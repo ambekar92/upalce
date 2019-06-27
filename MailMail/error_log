@@ -1,0 +1,58 @@
+[08-Feb-2018 05:04:34 UTC] PHP Warning:  mail(): Multiple or malformed newlines found in additional_header in /home/uplacein/public_html/MailMail/contact_me.php on line 120
+[08-Feb-2018 05:05:30 UTC] PHP Warning:  mail(): Multiple or malformed newlines found in additional_header in /home/uplacein/public_html/MailMail/contact_me.php on line 120
+[08-Feb-2018 05:06:08 UTC] PHP Warning:  mail(): Multiple or malformed newlines found in additional_header in /home/uplacein/public_html/MailMail/contact_me.php on line 120
+[08-Feb-2018 09:01:58 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:02:50 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:03:15 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:04:06 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:05:55 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:13:30 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:13:31 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 09:14:32 UTC] PHP Parse error:  syntax error, unexpected '$fromName' (T_VARIABLE) in /home/uplacein/public_html/MailMail/contact_me.php on line 62
+[08-Feb-2018 13:14:17 UTC] PHP Notice:  Undefined variable: message in /home/uplacein/public_html/MailMail/test.php on line 11
+[08-Feb-2018 13:16:06 UTC] PHP Notice:  Undefined variable: message in /home/uplacein/public_html/MailMail/test.php on line 11
+[08-Feb-2018 13:17:58 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:17:58 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:18:54 UTC] PHP Parse error:  syntax error, unexpected '@' in /home/uplacein/public_html/MailMail/test.php on line 3
+[08-Feb-2018 13:18:58 UTC] PHP Parse error:  syntax error, unexpected '@' in /home/uplacein/public_html/MailMail/test.php on line 3
+[08-Feb-2018 13:19:09 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:19:09 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:20:27 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:20:27 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:20:47 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:20:47 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:26:06 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[08-Feb-2018 13:26:06 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[09-Feb-2018 08:43:23 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[09-Feb-2018 08:43:23 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[09-Feb-2018 09:48:29 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[09-Feb-2018 09:48:29 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[16-Feb-2018 09:18:46 UTC] PHP Warning:  file_get_contents(sample.html): failed to open stream: No such file or directory in /home/uplacein/public_html/MailMail/t.php on line 9
+[16-Feb-2018 09:20:51 UTC] PHP Notice:  Undefined variable: message in /home/uplacein/public_html/MailMail/t.php on line 12
+[16-Feb-2018 11:13:04 UTC] PHP Warning:  file_get_contents(index.html): failed to open stream: No such file or directory in /home/uplacein/public_html/MailMail/t.php on line 5
+[17-Feb-2018 04:50:31 UTC] PHP Notice:  Undefined variable: headers in /home/uplacein/public_html/MailMail/t1.php on line 8
+[17-Feb-2018 05:41:47 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[17-Feb-2018 05:41:47 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:51:52 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:51:52 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:53:35 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:53:35 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:54:10 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 11:54:10 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 43
+[29-Mar-2018 12:11:47 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:11:47 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:11:47 UTC] PHP Warning:  mail() expects parameter 1 to be string, array given in /home/uplacein/public_html/MailMail/test.php on line 54
+[29-Mar-2018 12:34:06 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:34:06 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:40:26 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:40:26 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:41:16 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:41:16 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:41:49 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:41:49 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:42:21 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:42:21 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:42:35 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:42:35 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:43:34 UTC] PHP Notice:  Undefined variable: files in /home/uplacein/public_html/MailMail/test.php on line 45
+[29-Mar-2018 12:43:34 UTC] PHP Notice:  Undefined variable: i in /home/uplacein/public_html/MailMail/test.php on line 45
