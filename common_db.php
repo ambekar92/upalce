@@ -3,11 +3,11 @@
 error_reporting(0);
 if ($_SERVER['HTTP_HOST'] == 'localhost:8088') {
 $connection=mysql_connect("localhost","root","") or die('connection failed');
-mysql_select_db("uplacein_common_db") or die('Database name is not available 12!');
+mysql_select_db("common_db") or die('Database name is not available!');
 }
 else{
 $connection=mysql_connect("localhost","uplacein_admin","admin@123") or die('connection failed');
-mysql_select_db("uplacein_common_db") or die('Database name is not available 11!');
+mysql_select_db("uplacein_common_db") or die('Database name is not available!');
 }
 	
 $p_num = mysql_query("SELECT * FROM main_db") or die("Error in Selection Query <br> ".$Query."<br>". mysql_error());

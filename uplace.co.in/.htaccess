@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^uplace\.co\.in$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.uplace\.co\.in$
+RewriteRule ^/?$ "http\:\/\/uplace\.in\/" [R=301,L]
+
