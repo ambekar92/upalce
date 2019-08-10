@@ -18,7 +18,7 @@ error_reporting(0);
 
 if ($_SERVER['HTTP_HOST'] == 'localhost:8088') {
 $connection=mysql_connect("localhost","root","") or DIE('connection failed');
-mysql_select_db("common_db") or DIE('Database name is not available!');
+mysql_select_db("uplacein_common_db") or DIE('Database name is not available!');
 }
 else{
 $connection=mysql_connect("localhost","uplacein_admin","admin@123") or DIE('connection failed');

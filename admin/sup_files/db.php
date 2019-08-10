@@ -4,7 +4,21 @@ session_start();
 
 
 include('../common_db.php'); 
-$connection=mysql_connect("$server_host_name","$server_username","$server_password") or DIE('connection failed');
+
+
+// $data= array(
+// 		"server_id" =>$server_id,
+// 		"server_host_name"=>$server_host_name,
+// 		"server_db_name"=>$server_db_name,
+// 		"server_username"=>$server_username,
+// 		"server_password"=>$server_password
+// 		);
+	 
+// print_r($data);
+		 
+
+
+$connection=mysql_connect("$server_host_name","$server_username","$server_password") or die('connection failed admin');
 mysql_select_db("$server_db_name") or DIE('Database name is not available!');
 
 
