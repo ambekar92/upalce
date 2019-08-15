@@ -58,7 +58,7 @@ loadJobDetails:function(){
                   return a;
                 }
               },
-              { data: "comp_job_id" },
+              { data: "job_id" },
               { data: "title"},
               { data: "no_position"},
               { data: "requirement",

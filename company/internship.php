@@ -67,7 +67,7 @@ loadJobDetails:function(){
 
                 }
               },
-              { data: "comp_job_id" },
+              { data: "job_id" },
               { data: "title"},
               { data: "no_position"},
               { data: "requirement",
@@ -165,7 +165,7 @@ editJob:function (id){
           $('#contact_email').val(globalJOBData[i].contact_email);
           $('#salary').val(globalJOBData[i].salary);
           $('#last_date').val(globalJOBData[i].last_date);
-          $('#job_id').val(globalJOBData[i].comp_job_id);
+         // $('#job_id').val(globalJOBData[i].comp_job_id);
           break;
         }
     }
@@ -226,14 +226,14 @@ tempData.compFresher.loadJobDetails();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
       var last_date=$('#last_date').val();
-    var job_id=$('#job_id').val();
+    // var job_id=$('#job_id').val();
 
-    if(job_id == ""){
-      $('#job_id').css('border-color', 'red');
-      return false;
-    }else{
-      $('#job_id').css('border-color', '');
-    } 
+    // if(job_id == ""){
+    //   $('#job_id').css('border-color', 'red');
+    //   return false;
+    // }else{
+    //   $('#job_id').css('border-color', '');
+    // } 
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
@@ -311,14 +311,14 @@ $("#job_update").click(function(){
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
       var last_date=$('#last_date').val();
-      var job_id=$('#job_id').val();
+      // var job_id=$('#job_id').val();
 
-      if(job_id == ""){
-        $('#job_id').css('border-color', 'red');
-        return false;
-      }else{
-        $('#job_id').css('border-color', '');
-      } 
+      // if(job_id == ""){
+      //   $('#job_id').css('border-color', 'red');
+      //   return false;
+      // }else{
+      //   $('#job_id').css('border-color', '');
+      // } 
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
@@ -413,14 +413,14 @@ $("#job_update").click(function(){
           <input type="hidden"  name="job_type" id="job_type" value='I'>
           <input type="hidden"  name="comp_id" id="comp_id" value="<?php echo $ad_com_id; ?>" >
         
-        <div class="form-group">
+        <!-- <div class="form-group">
         <label class="control-label col-md-2 col-sm-2 col-xs-12">Job ID
           <span class="required">*</span>
         </label>
         <div class="col-md-3 col-sm-2 col-xs-12">
           <input type="text" name="job_id" id="job_id" required="required" placeholder="Job ID" class="form-control col-md-7 col-xs-12" autofocus>
         </div>
-        </div>
+        </div> -->
           <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Job Title
               <span class="required">*</span>

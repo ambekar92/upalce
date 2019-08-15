@@ -96,7 +96,7 @@ loadJobs:function(){
 	              '</div>'+			
 				  '<div class="x_content">'+
 				  	'<hr>'+
-					'<h2>JOB ID : '+obj.loadJobDetails[i].comp_job_id+'</h2>'+
+					'<h2>JOB ID : '+obj.loadJobDetails[i].job_id+'</h2>'+
 					'<h2 style="color:#000000cf;">Description :</h2>'+
 					'<p style="text-align: justify;">'+obj.loadJobDetails[i].descp+'</p><br>'+
 				    '<h2 style="color:#000000cf;">Requirement :</h2>'+ 

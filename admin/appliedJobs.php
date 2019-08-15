@@ -56,7 +56,7 @@ loadJobDetails:function(){
                   return a;
                 }
               },
-              { data: "comp_job_id" },              
+              { data: "job_id" },              
               { data: "salary",
                 render: function (data, type, row, meta) {
                  var a="&#8377;"+' '+tempData.appliedJOB.formatNumber(row.salary);

@@ -58,7 +58,7 @@ loadJobDetails:function(){
                   return a;
                 }
               },
-              { data: "comp_job_id" },
+              { data: "job_id" },
               { data: "title"},
               { data: "no_position"},
               { data: "requirement",
@@ -159,7 +159,7 @@ editJob:function (id){
           $('#contact_email').val(globalJOBData[i].contact_email);
           $('#salary').val(globalJOBData[i].salary);
           $('#last_date').val(globalJOBData[i].last_date);
-          $('#job_id').val(globalJOBData[i].comp_job_id);
+         // $('#job_id').val(globalJOBData[i].comp_job_id);
           break;
         }
     }
@@ -220,14 +220,14 @@ tempData.compFresher.loadJobDetails();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
       var last_date=$('#last_date').val();
-    var job_id=$('#job_id').val();
+    // var job_id=$('#job_id').val();
 
-    if(job_id == ""){
-      $('#job_id').css('border-color', 'red');
-      return false;
-    }else{
-      $('#job_id').css('border-color', '');
-    } 
+    // if(job_id == ""){
+    //   $('#job_id').css('border-color', 'red');
+    //   return false;
+    // }else{
+    //   $('#job_id').css('border-color', '');
+    // } 
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
@@ -305,14 +305,14 @@ $("#job_update").click(function(){
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
       var last_date=$('#last_date').val();
-      var job_id=$('#job_id').val();
+      // var job_id=$('#job_id').val();
 
-      if(job_id == ""){
-        $('#job_id').css('border-color', 'red');
-        return false;
-      }else{
-        $('#job_id').css('border-color', '');
-      } 
+      // if(job_id == ""){
+      //   $('#job_id').css('border-color', 'red');
+      //   return false;
+      // }else{
+      //   $('#job_id').css('border-color', '');
+      // } 
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
