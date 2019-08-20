@@ -128,7 +128,7 @@ include("db.php");
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i>Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php">Home</a></li>
+                      <li><a href="index.php">Dashboard</a></li>
                       <li><a href="college_list.php">List of College</a></li>
                     </ul>
                   </li>
@@ -136,9 +136,9 @@ include("db.php");
                   <li>
                     <a><i class="fa fa-briefcase"></i>Post Job <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="fresher.php">Fresher</a></li>
-                      <li><a href="graduated.php">Graduated</a></li>
-                      <li><a href="experience.php">Experience</a></li>
+                      <li><a href="fresher.php">Freshers</a></li>
+                      <!-- <li><a href="graduated.php">Graduated</a></li> -->
+                      <li><a href="experience.php">Experienced</a></li>
                       <li><a href="internship.php">Internship</a></li>
                     </ul>
                   </li>
@@ -153,7 +153,7 @@ include("db.php");
                   <li><a><i class="fa fa-file-text"></i>Job Application <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="fresherApp.php">Fresher</a></li>
-                      <li><a href="graduatedApp.php">Graduated</a></li>
+                      <!-- <li><a href="graduatedApp.php">Graduated</a></li> -->
                       <li><a href="experienceApp.php">Experience</a></li>
                       <li><a href="internshipApp.php">Internship</a></li>
                     </ul>

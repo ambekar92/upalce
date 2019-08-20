@@ -149,7 +149,8 @@ if(isset($_POST['getJobsStudentList'])){
   $comp_id=$_POST['comp_id'];
   $job_id=$_POST['job_id'];
 
-  $getSql="SELECT jp.type,s.firstname,s.email,s.usn,s.gender,e.end_year,e.branch,e.secured FROM track_job tj,co_job_posted jp,stu_student s,stu_education e 
+  $getSql="SELECT tj.clg_approval,tj.id,tj.job_id,tj.colleg_id,tj.student_id,jp.type,s.firstname,s.email,s.usn,s.gender,e.end_year,e.branch,e.secured 
+     FROM track_job tj,co_job_posted jp,stu_student s,stu_education e 
      WHERE tj.student_id=s.id and s.id=e.fk_stu_id and class='Graduation' and tj.job_id=".$job_id." 
      and jp.reg_comp_id=".$comp_id." and tj.colleg_id=".$college_id." GROUP BY tj.job_id, tj.student_id";
     
@@ -164,15 +165,25 @@ if(isset($_POST['getJobsStudentList'])){
         $end_year=$row['end_year'];
         $branch=$row['branch'];
         $sasecuredlary=$row['secured'];
+        $id=$row['id'];
+        $job_id=$row['job_id'];
+        $colleg_id=$row['colleg_id'];
+        $student_id=$row['student_id'];
+        $clg_approval   =$row['clg_approval'];
 
-        $getJobDetails[]=array('type' =>"$type",
-            'firstname' =>"$firstname",
-            'email' =>"$email",
-            'usn' =>"$usn",
-            'gender' =>"$gender",
-            'end_year' =>"$end_year",
-            'branch' =>"$branch",
-            'secured' => "$secured",        
+        $getJobDetails[]=array('type' =>$type,
+            'firstname' =>$firstname,
+            'email' =>$email,
+            'usn' =>$usn,
+            'gender' =>$gender,
+            'end_year' =>$end_year,
+            'branch' =>$branch,
+            'secured' => $secured,        
+            'id' =>(int)$id,        
+            'job_id' => (int)$job_id,        
+            'colleg_id' => (int)$colleg_id,        
+            'student_id' => (int)$student_id,
+            'clg_approval' => (int)$clg_approval
         );
         
     }
@@ -181,28 +192,51 @@ if(isset($_POST['getJobsStudentList'])){
     echo json_encode($status);
     mysqli_close($con);
 }
-/* Publish JOB */
-if(isset($_POST['publish'])){
 
-  $rec_id=$_POST['rec_id'];
-  $del ="UPDATE co_job_posted SET publish=1 WHERE id=".$rec_id;
-  $jobDetailsDelete=mysql_query($del) or die('Error:'.mysql_error());
+// /* Publish JOB */
+// if(isset($_POST['publish'])){
 
-  if(!$jobDetailsDelete) {
-        $error="Server Error !!";
-        $response['info']=$error;
-        $response['infoRes']='E'; //Error
-    }else {
-        $response['info']="Record Published Successfully";
-        $response['infoRes']="S"; // success
-    }
+//   $rec_id=$_POST['rec_id'];
+//   $del ="UPDATE co_job_posted SET publish=1 WHERE id=".$rec_id;
+//   $jobDetailsDelete=mysql_query($del) or die('Error:'.mysql_error());
+
+//   if(!$jobDetailsDelete) {
+//         $error="Server Error !!";
+//         $response['info']=$error;
+//         $response['infoRes']='E'; //Error
+//     }else {
+//         $response['info']="Record Published Successfully";
+//         $response['infoRes']="S"; // success
+//     }
     
-    $status['data'] = $response;
-    echo json_encode($status);
-    mysqli_close($con);
-}
+//     $status['data'] = $response;
+//     echo json_encode($status);
+//     mysqli_close($con);
+// }
 
+/* Admin Approval for Student JOB*/
+if(isset($_POST['stuApproval'])){
 
+    $id=$_POST['id'];
+    //print_r($id);
+
+    $ids = implode(",",$id);
+    $del ="UPDATE track_job SET clg_approval=1 WHERE id IN ($ids)";
+    $jobDetailsDelete=mysql_query($del) or die('Error:'.mysql_error());
+
+    if(!$jobDetailsDelete) {
+          $error="Server Error !!";
+          $response['info']=$error;
+          $response['infoRes']='E'; //Error
+      }else {
+          $response['info']="Record Approved Successfully";
+          $response['infoRes']="S"; // success
+      }
+      
+      $status['data'] = $response;
+      echo json_encode($status);
+      mysqli_close($con);
+  }
 
 
 ?>

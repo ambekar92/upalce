@@ -65,6 +65,7 @@
       
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
 	
 	
 	<script type="text/javascript" src="js/nicEdit.js"></script>

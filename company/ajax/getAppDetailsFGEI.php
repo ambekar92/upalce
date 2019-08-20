@@ -121,7 +121,7 @@ if(isset($_POST['getStudentList'])){
 $getSql="SELECT ss.id as id,job_id,student_id,colleg_id,type,random_num_gen,firstname,se.class as class,
 se.branch as branch,se.secured as be_perc,stu10.secured as 10s_perc,stu12.secured as 12s_perc 
 from track_job tj,stu_student ss, stu_education se,stu_edu_10 stu10,stu_edu_12 stu12
-where tj.job_id='".$job_id."' and colleg_id='".$college_id."' and tj.student_id=ss.id and se.fk_stu_id=ss.id and se.class Not IN (10,12) and ss.id=stu10.fk_stu_id and ss.id=stu12.fk_stu_id";   
+where tj.job_id='".$job_id."' and tj.clg_approval=1 and colleg_id='".$college_id."' and tj.student_id=ss.id and se.fk_stu_id=ss.id and se.class Not IN (10,12) and ss.id=stu10.fk_stu_id and ss.id=stu12.fk_stu_id";   
 
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   

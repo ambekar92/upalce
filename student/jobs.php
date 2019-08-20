@@ -70,7 +70,8 @@ loadJobs:function(){
 	  success: function(obj) {
 	  	var content="";
 	  	var img="";
-	  	$('#buildJob').html('');
+		  $('#buildJob').html('');
+		  debugger;
 
 	      if(obj.loadJobDetails !=null){
 
@@ -81,15 +82,24 @@ loadJobs:function(){
 	            img='<img class="comlogo" src="../company/'+obj.loadJobDetails[i].profile_img+'">';
 	          }else{
 	            img='<img class="comlogo" src="../company/images/user.png">';
-	          }
+			  }
 
-	      	content +='<div class="x_panel">'+
+			var res = obj.loadJobDetails[i].last_date.split("/");
+			var final_date=res[2]+"-"+res[1]+"-"+res[0];	
+			final_date = final_date.replace(/\s/g,'');
+			var currDate ='<?php echo  date("Y-m-d");?>';	
+			
+			const date1 = new Date(final_date);
+    		const date2 = new Date(currDate);
+			  
+			  
+	      	content='<div class="x_panel">'+
 	              '<div class="x_title">'+img+
 	                '<h2 class="title">'+obj.loadJobDetails[i].title+'<br>'+
 	                	'<small>'+obj.loadJobDetails[i].comp_name+'</small></h2>'+	             
 	               '<ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">'+          
 	                  '<li><p class="lastDate">Last Date : '+obj.loadJobDetails[i].last_date+'</p></li>'+
-	                  '<br><button class="btn btn-primary btn-xs" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok" ></span>'+
+	                  '<br><button id="apply_'+obj.loadJobDetails[i].id+'" class="btn btn-primary btn-xs" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok" ></span>'+
 	                  ' Apply </button>'+
 	                '</ul>'+
 	                '<div class="clearfix"></div>'+
@@ -107,14 +117,22 @@ loadJobs:function(){
 				    '<p class="pMargin">Location : '+obj.loadJobDetails[i].location+'</p>'+
 				    '<p class="pMargin">Contact Email : '+obj.loadJobDetails[i].contact_email+'</p><br>'+
 
-					'<button class="btn btn-primary btn-sm" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok"></span>'+  
+					'<button id="apply_b_'+obj.loadJobDetails[i].id+'" class="btn btn-primary btn-sm" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok"></span>'+  
 					' Apply </button>'+
 				  '</div>'+
-      			'</div>'; 
-
+				  '</div>'; 
+				  
+				  $('#buildJob').append(content);
+			  
+			  if(date1 < date2){
+				$("#apply_"+obj.loadJobDetails[i].id).prop("disabled", true);
+				$("#apply_b_"+obj.loadJobDetails[i].id).prop("disabled", true);
+			  }else{
+				$("#apply_"+obj.loadJobDetails[i].id).prop("disabled", false);
+				$("#apply_b_"+obj.loadJobDetails[i].id).prop("disabled", false);
+			  }
 	      	}
-	      	$('#buildJob').append(content);
-
+			
 	      }else{
 
 	      	content +='<div class="x_panel">'+

@@ -50,7 +50,21 @@ loadJobDetails:function(){
             "destroy":true,
             "data":obj.loadJobDetails,   
             "columns": [
-              { data:null,"SlNo":false,className: "text-center"},              
+              {
+                sortable: false,
+                "render": function ( data, type, row, meta ) {
+                  var a='';
+
+                  if(row.clg_approval==1){
+                    a='<span class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-ok"></i> </span>';
+                  }else{
+                    a='<input type="checkbox" name="select_all" value="'+row.id+'"/>';
+                  }
+                  
+                return a;
+                }
+              },
+              //<a title="Approve" id="btn_'+row.id+'"> <span class="btn btn-danger btn-xs" onclick="tempData.appliedJOB.approve('+row.id+','+row.job_id+','+row.student_id+','+row.colleg_id+');"> <i class="glyphicon glyphicon-trash"></i> </span> </a>           
               { data: "usn" },              
               { data: "firstname" },              
               { data: "gender" },              
@@ -59,16 +73,54 @@ loadJobDetails:function(){
               { data: "end_year" },    
               ]
            });
-            loadJobDetails.on( 'order.dt search.dt', function () {
-            loadJobDetails.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw(); 
+            // loadJobDetails.on( 'order.dt search.dt', function () {
+            // loadJobDetails.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            //         cell.innerHTML = i+1;
+            //     } );
+            // } ).draw(); 
 
            } // else End here  
 
           } // ajax success ends
         });   
+},
+approve:function(id,job_id,student_id,colleg_id){
+  // alert(id);
+  // alert(job_id);
+  // alert(student_id);
+  // alert(colleg_id);
+
+debugger;
+  var selStu = [];
+  $.each($("input[name='select_all']:checked"), function(){            
+      selStu.push($(this).val());
+  });
+
+  //selStu.push(id);
+
+  if(selStu.length>0){
+
+  var url="ajax/getJobDetailsADM.php";
+  var myData={stuApproval:"stuApproval",id:selStu};
+
+          $.ajax({
+            type:"POST",
+            url:url,
+            async: false,
+            dataType: 'json',
+            data:myData,
+            success: function(obj){
+             
+              tempData.appliedJOB.loadJobDetails();
+            }
+          });
+          
+  }else{
+    alert('please select the student');
+  }
+
+
+
 },
 gotoJobs:function(compId){
     window.location="appliedJobs.php?comp_id="+compId;
@@ -108,6 +160,35 @@ $(document).ready(function(){
   $('#comp_id').val(<?php echo $_GET['comp_id']; ?>);
   $('#job_id').val(<?php echo $_GET['job_id']; ?>);
   tempData.appliedJOB.loadJobDetails();
+
+  $('#select_all').click(function(event) { 
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;  
+            
+  var favorite = [];
+  $.each($("input[name='select_all']:checked"), function(){            
+      favorite.push($(this).val());
+      $('#btn_'+$(this).val()).hide();
+  });
+
+			//$('#delete_btn').show();		
+        });
+    }else{
+		$(':checkbox').each(function() {
+            this.checked = false;   
+      //$('#delete_btn').hide();	
+      var favorite = [];
+  $.each($("input[name='select_all']:checked"), function(){            
+      favorite.push($(this).val());
+      $('#btn_'+$(this).val()).show();
+  });
+
+        });
+	}
+}); 
+
 });
 </script>
   
@@ -137,7 +218,11 @@ $(document).ready(function(){
                 <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
-                          <th>Sl.No.</th>
+                          <th>
+                            <input type="checkbox" name="select_all[]" id="select_all" /> 
+					                	<span id="delete_btn"><button type="button" onClick=tempData.appliedJOB.approve(); name="delete_all" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-ok"></i> </button></span>
+                          </th>
+                          <!-- <th>Sl.No.</th> -->
                           <th>USN</th>
                           <th>First Name</th>
                           <th>Gender</th>

@@ -68,5 +68,45 @@ $email=$_POST["email"];
 
 
 
+if(isset($_POST['overviewReport'])){
+
+    $sql = "SELECT
+            COUNT(case when type='F' then type end) as fresher,
+            COUNT(case when type='E' then type end) as experience,
+            COUNT(case when type='I' then type end) as internship,
+            (select  COUNT(DISTINCT colleg_id) from track_job) as college
+            from co_job_posted";
+
+    //echo $sql;
+    $result = mysql_query($sql) or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());
+    $num_rows = mysql_num_rows($result);
+  
+    while ($row=mysql_fetch_array($result)) 
+    {
+       $fresher=$row['fresher'];
+       $experience=$row['experience'];
+       $internship=$row['internship'];
+       $college=$row['college'];
+
+       $obj=array(
+                    'fresher' =>$fresher,
+                    'experience' =>$experience,
+                    'internship' =>$internship,
+                    'college' =>$college
+                      );
+    }
+
+        $status["data"] =$obj;
+        $final_data=$status;
+        echo json_encode($final_data);  
+  
+  }
+
+
+
+  
+
+
+
 
 ?>

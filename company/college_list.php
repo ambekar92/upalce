@@ -54,7 +54,9 @@ loadCompanyDetails:function(){
             "columns": [
               {data:null,"SlNo":false,className: "text-center"},
               { data: "clg_name" },
-              { data: "email" },
+              // { data: "email" },
+              { data: "contact_person_1"},
+              { data: "mobile_number_1"},
               { data: "off_email"},
               { data: "current_location",
                 render: function (data, type, row, meta) {
@@ -109,7 +111,9 @@ tempData.compHome.loadCompanyDetails();
                             <tr>
                               <th>Sl No</th>
                               <th>College Name</th>
-                              <th>Email ID</th>                               
+                              <!-- <th>Email ID</th>                                -->
+                              <th>Contact Person</th>                               
+                              <th>Phone Number</th>                               
                               <th>Official Email ID</th>                               
                               <th>Location</th>                               
                             </tr>
