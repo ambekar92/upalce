@@ -45,6 +45,7 @@ include('sup_files/db.php');
 	.lastDate{
 		font-weight: bold;
     	color: black;
+		margin-right:1%
 	}
 </style>
 
@@ -83,18 +84,28 @@ loadJobs:function(){
 	            img='<img class="comlogo" src="../company/images/user.png">';
 	          }
 
-	      	content +='<div class="x_panel">'+
-	              '<div class="x_title">'+img+
-	                '<h2 class="title">'+obj.loadJobDetails[i].title+'<br>'+
-	                	'<small>'+obj.loadJobDetails[i].comp_name+'</small></h2>'+	             
-	               '<ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">'+          
-	                  '<li><p class="lastDate">Last Date : '+obj.loadJobDetails[i].last_date+'</p></li>'+
-	                  '<br><button class="btn btn-primary btn-xs" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok" ></span>'+
-	                  ' Apply </button>'+
-	                '</ul>'+
-	                '<div class="clearfix"></div>'+
-	              '</div>'+			
-				  '<div class="x_content">'+
+			var res = obj.loadJobDetails[i].last_date.split("/");
+			var final_date=res[2]+"-"+res[1]+"-"+res[0];	
+			final_date = final_date.replace(/\s/g,'');
+			var currDate ='<?php echo  date("Y-m-d");?>';	
+			
+			const date1 = new Date(final_date);
+			const date2 = new Date(currDate);
+			
+			content='<div class="x_panel">'+
+					'<div class="x_title collapse-link" style="cursor: pointer;">'+img+
+					'<h2 class="title">'+obj.loadJobDetails[i].title+'<br>'+
+					'<small>'+obj.loadJobDetails[i].comp_name+'</small></h2>'+	
+							
+					'<ul class=" pull-right nav navbar-right panel_toolbox" style="min-width:0 !important;margin-bottom: 1%;">'+          
+					'<li><a><i class="fa fa-chevron-down pull-right"></i></a></li>'+
+					'</ul><br>'+
+					'<button id="apply_'+obj.loadJobDetails[i].id+'" class=" pull-right btn btn-primary btn-xs" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok" ></span>'+
+					' Apply </button>'+
+					'<p class="lastDate pull-right">Last Date : '+obj.loadJobDetails[i].last_date+'</p>'+ 
+					'<div class="clearfix"></div>'+
+					'</div>'+			
+					'<div class="x_content" id="removeStyle1" style="display: none;">'+
 				  	'<hr>'+
 					'<h2>JOB ID : '+obj.loadJobDetails[i].comp_job_id+'</h2>'+
 					'<h2 style="color:#000000cf;">Description :</h2>'+
@@ -105,15 +116,57 @@ loadJobs:function(){
 				    '<p class="pMargin">Salary : '+tempData.uplace.formatNumber(obj.loadJobDetails[i].salary)+'</p>'+
 				    '<p class="pMargin">Number of Position : '+obj.loadJobDetails[i].no_position+'</p>'+
 				    '<p class="pMargin">Location : '+obj.loadJobDetails[i].location+'</p>'+
-				    '<p class="pMargin">Contact Email : '+obj.loadJobDetails[i].contact_email+'</p><br>'+
+				    // '<p class="pMargin">Contact Email : '+obj.loadJobDetails[i].contact_email+'</p><br>'+
 
-					'<button class="btn btn-primary btn-sm" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok"></span>'+  
+					'<button id="apply_b_'+obj.loadJobDetails[i].id+'" class="btn btn-primary btn-sm" onClick="tempData.uplace.applyjob('+obj.loadJobDetails[i].id+')"><span class="glyphicon glyphicon-ok"></span>'+  
 					' Apply </button>'+
 				  '</div>'+
-      			'</div>'; 
+				  '</div>'; 
+				  
+				  $('#buildJob').append(content);
+
+					if(date1 < date2){
+						$("#apply_"+obj.loadJobDetails[i].id).prop("disabled", true);
+						$("#apply_b_"+obj.loadJobDetails[i].id).prop("disabled", true);
+					}else{
+						$("#apply_"+obj.loadJobDetails[i].id).prop("disabled", false);
+						$("#apply_b_"+obj.loadJobDetails[i].id).prop("disabled", false);
+					}
+
 
 	      	}
-	      	$('#buildJob').append(content);
+			  
+
+			  
+			  setTimeout(function(){ 
+				// Panel toolbox
+					$(document).ready(function() {
+						$('.collapse-link').on('click', function() {
+							var $BOX_PANEL = $(this).closest('.x_panel'),
+								$ICON = $(this).find('i'),
+								$BOX_CONTENT = $BOX_PANEL.find('.x_content');
+							
+							// fix for some div with hardcoded fix class
+							if ($BOX_PANEL.attr('style')) {
+								$BOX_CONTENT.slideToggle(200, function(){
+									$BOX_PANEL.removeAttr('style');
+								});
+							} else {
+								$BOX_CONTENT.slideToggle(200); 
+								$BOX_PANEL.css('height', 'auto');  
+							}
+
+							$ICON.toggleClass('fa-chevron-up fa-chevron-down');
+						});
+
+						$('.close-link').click(function () {
+							var $BOX_PANEL = $(this).closest('.x_panel');
+
+							$BOX_PANEL.remove();
+						});
+					});
+			  }, 2000);
+
 
 	      }else{
 
@@ -173,27 +226,7 @@ $(document).ready(function() {
             <div class="clearfix"></div>		
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12" id="buildJob">
-                
-				<!-- 	 <span id="buildJob"></span> -->
-                <!-- <div class="x_panel">
-	              <div class="x_title">
-	                <img src="images/user.png" class="comlogo" /> <h2>Job Title<br>
-	                	<small>Company Name</small></h2>	             
-	                <ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">           
-	                  <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
-	                </ul>
-	                <div class="clearfix"></div>
-	              </div>			
-				  <div class="x_content">
-				  	<hr>
-					<h2>Description</h2>
-				    <h2>Requirement</h2> 
-					 <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok"></span>  Apply </button>
-				  </div>
-      			</div>   -->
-
-      			 
-			
+     		
 			  
 			  </div> <!-- col-12 -->
             </div> <!-- row -->

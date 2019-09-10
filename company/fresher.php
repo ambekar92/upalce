@@ -61,7 +61,7 @@ loadJobDetails:function(){
                   if(row.publish==0){
                     print=a+' '+b+' '+c;
                   }else{
-                    print=d;
+                    print=a+' '+d;
                   }
                   return print;
                 }

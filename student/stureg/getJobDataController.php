@@ -57,7 +57,7 @@ if(isset($_POST['getJobDetails'])){
   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
 	c.profile_img,c.comp_name,jp.comp_job_id  
 	FROM co_job_posted jp,ad_companies c 
-	WHERE type IN ('G','F') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.")";
+	WHERE type IN ('G','F') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.") order by last_date DESC";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   

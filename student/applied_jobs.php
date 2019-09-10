@@ -45,6 +45,7 @@ include('sup_files/db.php');
 	.lastDate{
 		font-weight: bold;
     	color: black;
+		margin-right:1%
 	}
 	.x_title span{
 		color: white;
@@ -89,22 +90,24 @@ loadJobs:function(){
 	          }
 
           	if(obj.loadJobDetails[i].type=='I'){
-          		interVar='<button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-envelope"></span>'+' Internship </button>';
+          		interVar='<button class=" pull-right btn btn-primary btn-xs"> <span class="glyphicon glyphicon-envelope"></span> &nbsp;'+' Internship </button>';
           	}else{
           		interVar='';
           	}
 
-	      	content +='<div class="x_panel">'+
-	              '<div class="x_title">'+img+
-	                '<h2 class="title">'+obj.loadJobDetails[i].title+'<br>'+
-	                	'<small>'+obj.loadJobDetails[i].comp_name+'</small></h2>'+	             
-	               '<ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">'+          
-	                  '<li><p class="lastDate">Last Date : '+obj.loadJobDetails[i].last_date+'</p></li>'+
-	                  '<br><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-star"></span>'+' Applied </button>'+interVar+
-	                '</ul>'+
-	                '<div class="clearfix"></div>'+
-	              '</div>'+			
-				  '<div class="x_content">'+
+			  content='<div class="x_panel">'+
+					'<div class="x_title collapse-link" style="cursor: pointer;">'+img+
+					'<h2 class="title">'+obj.loadJobDetails[i].title+'<br>'+
+					'<small>'+obj.loadJobDetails[i].comp_name+'</small></h2>'+	
+							
+					'<ul class=" pull-right nav navbar-right panel_toolbox" style="min-width:0 !important;margin-bottom: 1%;">'+          
+					'<li><a><i class="fa fa-chevron-down pull-right"></i></a></li>'+
+					'</ul><br>'+
+					'<button class=" pull-right btn btn-primary btn-xs"><span class="glyphicon glyphicon-star"></span>'+' Applied </button>'+interVar+
+					'<p class="lastDate pull-right">Last Date : '+obj.loadJobDetails[i].last_date+'</p>'+ 
+					'<div class="clearfix"></div>'+
+					'</div>'+			
+					'<div class="x_content" id="removeStyle1" style="display: none;">'+
 				  	'<hr>'+
 					'<h2>JOB ID : '+obj.loadJobDetails[i].comp_job_id+'</h2>'+
 					'<h2 style="color:#000000cf;">Description :</h2>'+
@@ -115,21 +118,49 @@ loadJobs:function(){
 				    '<p class="pMargin">Salary : '+tempData.uplace.formatNumber(obj.loadJobDetails[i].salary)+'</p>'+
 				    '<p class="pMargin">Number of Position : '+obj.loadJobDetails[i].no_position+'</p>'+
 				    '<p class="pMargin">Location : '+obj.loadJobDetails[i].location+'</p>'+
-				    '<p class="pMargin">Contact Email : '+obj.loadJobDetails[i].contact_email+'</p><br>'+
+				    // '<p class="pMargin">Contact Email : '+obj.loadJobDetails[i].contact_email+'</p><br>'+
 
 					 // '<button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-heart"></span>'+' Applied </button>'+
 				  '</div>'+
       			'</div>'; 
+				  $('#buildJob').append(content);
+			  }	      
+			  	  
+			  setTimeout(function(){ 
+				// Panel toolbox
+					$(document).ready(function() {
+						$('.collapse-link').on('click', function() {
+							var $BOX_PANEL = $(this).closest('.x_panel'),
+								$ICON = $(this).find('i'),
+								$BOX_CONTENT = $BOX_PANEL.find('.x_content');
+							
+							// fix for some div with hardcoded fix class
+							if ($BOX_PANEL.attr('style')) {
+								$BOX_CONTENT.slideToggle(200, function(){
+									$BOX_PANEL.removeAttr('style');
+								});
+							} else {
+								$BOX_CONTENT.slideToggle(200); 
+								$BOX_PANEL.css('height', 'auto');  
+							}
 
-	      	}
-	      	$('#buildJob').append(content);
+							$ICON.toggleClass('fa-chevron-up fa-chevron-down');
+						});
+
+						$('.close-link').click(function () {
+							var $BOX_PANEL = $(this).closest('.x_panel');
+
+							$BOX_PANEL.remove();
+						});
+					});
+			  }, 2000);
 
 	      }else{
 			content +='<div class="x_panel">'+
 	              '<h2>Job Not Available !!</h2>'+
       			'</div>'; 
 
-	      	$('#buildJob').html(content);
+			  $('#buildJob').html(content);	  
 	      }
 	    } 
 	});
@@ -162,27 +193,7 @@ tempData.uplace.loadJobs();
             <div class="clearfix"></div>		
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12" id="buildJob">
-                
-				<!-- 	 <span id="buildJob"></span> -->
-                <!-- <div class="x_panel">
-	              <div class="x_title">
-	                <img src="images/user.png" class="comlogo" /> <h2>Job Title<br>
-	                	<small>Company Name</small></h2>	             
-	                <ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">           
-	                  <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
-	                </ul>
-	                <div class="clearfix"></div>
-	              </div>			
-				  <div class="x_content">
-				  	<hr>
-					<h2>Description</h2>
-				    <h2>Requirement</h2> 
-					 <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok"></span>  Apply </button>
-				  </div>
-      			</div>   -->
-
-      			 
-			
+              
 			  
 			  </div> <!-- col-12 -->
             </div> <!-- row -->
