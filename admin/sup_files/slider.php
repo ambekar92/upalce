@@ -144,6 +144,7 @@ thead > tr{
                    <li><a href="index.php">Dashboard</a></li>
                    <li><a href="reports.php">Reports</a></li>
                    <li><a href="applied.php">Applied Jobs</a></li>
+                   <li><a href="approved.php">Approved Jobs</a></li>
 			    </ul>
                   </li>
 				  <li><a><i class="fa fa-users"></i>Students <span class="fa fa-chevron-down"></span></a>

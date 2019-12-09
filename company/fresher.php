@@ -8,6 +8,7 @@ include('sup_files/db.php');
 <script type="text/javascript">
 var deleteVar=null;
 var globalJOBData=null;
+var globalSelectedJobData=null;
 var tempData;
 if(tempData===null||tempData===undefined){
    tempData={};
@@ -58,10 +59,12 @@ loadJobDetails:function(){
                   var b='<button type="button" title="Delete" class="btn btn-danger btn-xs" onclick="tempData.compFresher.delete('+row.id+');"><i class="fa fa-trash"></i> </button>';
                   var c='<button type="button" title="Publish" class="btn btn-success btn-xs" onclick="tempData.compFresher.publish('+row.id+');">Publish <i class="fa fa-send"></i> </button>';
                   var d='<button type="button" title="Publish" class="btn btn-warning btn-xs"> Published </button>';
+                  var e='<button type="button" title="View" class="btn btn-info btn-xs" onclick="tempData.compFresher.viewInfo('+row.id+');"><i class="fa fa-eye"></i> </button>';
+               
                   if(row.publish==0){
-                    print=a+' '+b+' '+c;
+                    print=a+' '+b+' '+e+' '+c;
                   }else{
-                    print=a+' '+d;
+                    print=a+' '+e+' '+d;
                   }
                   return print;
                 }
@@ -97,6 +100,36 @@ loadJobDetails:function(){
 
           } // ajax success ends
         });   
+},
+getKeyByValue(object, value,key) { 
+  debugger;
+    for (var prop in object) { 
+      if (object[prop][key] == value){
+        return object[prop]; 
+      }
+    } 
+},
+viewInfo:function(val){
+  var obj = tempData.compFresher.getKeyByValue(globalJOBData,val,'id');
+  console.log(obj);
+
+  var descp = obj.descp.replace(/↵/g,'<br/>');
+  var requirement = obj.requirement.replace(/↵/g,'<br/>');
+  console.log(requirement);
+
+  var content='<h2>Job ID : '+obj.job_id+'</h2><br>'+
+              '<h2>Job Title : '+obj.title+'</h2><br>'+
+              '<h2>Description :</h2><p>'+descp+'</p><br>'+
+              '<h2>Requirement :</h2><p>'+requirement+'</p><br>'+
+              '<h2>Salary : '+obj.salary+'</h2><br>'+
+              '<h2>Number of Position : '+obj.no_position+'</h2><br>'+ 
+              '<h2>Location : '+obj.location+'</h2><br>';
+              '<h2>Last Date : '+obj.last_date+'</h2><br>';
+              
+
+
+  $('#bodyContent').html(content);
+   $("#viewInfo").modal({backdrop:'static'});
 },
 delete:function(id) {
   deleteVar=id;
@@ -576,6 +609,24 @@ $("#job_update").click(function(){
       <div class="modal-footer" style="margin-bottom: -10px;padding: 12px;">
   <!--     <input type="button" class="btn btn-default" data-dismiss="modal" 
   style="height:25px;padding-left: 12px;padding-right: 12px;padding-top: 0px;padding-bottom: 1px;" value="Close"/> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+       <h5 class="modal-title" id="myModalLabel">Message</h5>
+       </div>
+         <div class="modal-body"  id="bodyContent">
+         </div>
+      <div class="modal-footer" style="margin-bottom: -10px;padding: 12px;">
+      <input type="button" class="btn btn-default" data-dismiss="modal" 
+  style="height:25px;padding-left: 12px;padding-right: 12px;padding-top: 0px;padding-bottom: 1px;" value="Close"/>
       </div>
     </div>
   </div>
