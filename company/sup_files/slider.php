@@ -15,7 +15,7 @@ include("db.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> Admin</title>
+    <title>Company | Admin</title>
 
 	 <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -138,7 +138,7 @@ include("db.php");
                     <ul class="nav child_menu">
                       <li><a href="fresher.php">Freshers</a></li>
                       <!-- <li><a href="graduated.php">Graduated</a></li> -->
-                      <li><a href="experience.php">Experienced</a></li>
+                      <!-- <li><a href="experience.php">Experienced</a></li> -->
                       <li><a href="internship.php">Internship</a></li>
                     </ul>
                   </li>
@@ -152,10 +152,10 @@ include("db.php");
 
                   <li><a><i class="fa fa-file-text"></i>Job Application <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="fresherApp.php">Fresher</a></li>
+                      <li><a href="fresherApp.php">Jobs Details</a></li>
                       <!-- <li><a href="graduatedApp.php">Graduated</a></li> -->
-                      <li><a href="experienceApp.php">Experience</a></li>
-                      <li><a href="internshipApp.php">Internship</a></li>
+                      <!-- <li><a href="experienceApp.php">Experience</a></li> -->
+                      <!-- <li><a href="internshipApp.php">Internship</a></li> -->
                     </ul>
                   </li>
 

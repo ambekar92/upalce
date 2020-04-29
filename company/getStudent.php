@@ -49,11 +49,11 @@ loadStudentDetails:function(){
             "destroy":true,
             "data":obj.loadStudentDetails,   
             "columns": [             
+              { data: "sl_no" },              
               { data: "firstname" },              
               { data: "10s_perc" },              
               { data: "12s_perc" },              
-              { data: "be_perc" },              
-              { data: "class" },              
+              { data: "be_perc" },             
               { data: "branch" },            
               ]
            });
@@ -103,23 +103,19 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:auto;">
+                  <div class="x_content"  style="width:100%;">
                     
                 <table id="loadStudentDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
+                          <th>Sl.No</th>
                           <th>Student Name</th>
                           <th>10th %</th>
                           <th>12th %</th>
                           <th>BE %</th>
-                          <th>Class</th>
                           <th>Branch</th>
                         </tr>
-              <!-- { data: "firstname" },              
-              { data: "10s_perc" },              
-              { data: "12s_perc" },              
-              { data: "class" },              
-              { data: "branch" },  -->           
+                  
                       </thead>
                     </table>
                   </div>

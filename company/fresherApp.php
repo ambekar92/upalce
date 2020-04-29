@@ -5,6 +5,12 @@ include('links.php');
 include('sup_files/db.php');
 ?>
 
+<style>
+.hightlight{
+  font-weight: bolder;
+    color: darkblue;
+}
+</style>
 <script type="text/javascript">
 var deleteVar=null;
 var globalJOBData=null;
@@ -58,30 +64,60 @@ loadJobDetails:function(){
                   return a;
                 }
               },
-              { data: "job_id" },
-              { data: "title"},
-              { data: "no_position"},
-              { data: "requirement",
-                 render: function (data, type, row, meta) {
-                 var a="<textarea readonly>"+row.requirement+"</textarea>";
-                  return a;
-                }
-              },
-              { data: "descp",
+              { data: "job_id",
                 render: function (data, type, row, meta) {
-                 var a="<textarea readonly>"+row.descp+"</textarea>";
+                 var a= "<span class='hightlight'>"+row.job_id+"</span>";
                   return a;
                 }
               },
+              { data: "type",
+                 render: function (data, type, row, meta) {
+                   var f,a,b;
+
+                   if(row.type=='F'){
+                    f='Fresher';
+                   }else{
+                    f='Internship';
+                   }
+                 
+                  return f;
+                }
+              },
+              { data: "title"},
+              { data: "no_position",className: "text-right"},
+              // { data: "requirement",
+              //    render: function (data, type, row, meta) {
+              //   // var a="<textarea readonly>"+row.requirement+"</textarea>";
+              //     return row.requirement;
+              //   }
+              // },
+              // { data: "descp",
+              //   render: function (data, type, row, meta) {
+              //    //var a="<textarea readonly>"+row.descp+"</textarea>";
+              //     return row.descp;
+              //   }
+              // },
               { data: "location"},
               { data: "contact_email"},
-              { data: "salary",
+              { data: "salary",className: "text-right",
                 render: function (data, type, row, meta) {
                  var a="&#8377;"+tempData.compFresher.formatNumber(row.salary);
                   return a;
                 }
               },
               { data: "last_date"},
+              { data: "college_count",className: "text-right",
+                render: function (data, type, row, meta) {
+                  var a= "<span class='hightlight'>"+row.college_count+"</span>";
+                  return a;
+                }
+              },
+              { data: "stu_count",className: "text-right",
+                render: function (data, type, row, meta) {
+                  var a= "<span class='hightlight'>"+row.stu_count+"</span>";
+                  return a;
+                }
+              }
               ]
            });
 
@@ -130,7 +166,7 @@ tempData.compFresher.loadJobDetails();
                 
                  <div class="x_panel">
                   <div class="x_title collapse-link" style="cursor: pointer;">
-                    <h2>Fresher JOB Details</h2>
+                    <h2>JOB Details</h2>
                     <ul class="nav navbar-right panel_toolbox" style="min-width:0 !important;">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -138,21 +174,24 @@ tempData.compFresher.loadJobDetails();
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:scroll;">
+                  <div class="x_content"  style="width:100%;">
                     
                    <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Action</th>
                           <th>Job ID</th>
+                          <th>Type</th>
                           <th>Job Title</th>
                           <th>Number Position</th>
-                          <th>Requirement</th>
-                          <th>Description</th>
+                          <!-- <th>Requirement</th>
+                          <th>Description</th> -->
                           <th>Location</th>
                           <th>Contact Email</th>
                           <th>Salary</th>
                           <th>Last Date</th>                                                  
+                          <th>College Count</th>                                                  
+                          <th>Student Count</th>                                                  
                         </tr>
                       </thead>
                     </table>

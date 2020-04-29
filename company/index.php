@@ -50,7 +50,7 @@ body .container.body .right_col {
 	background-color: #1b3f63;
     padding: 10px !important;
     border-radius: 5px;    
-    box-shadow: -1px 2px 14px 0px #080808;
+    box-shadow: 8px 6px 6px 0px #c1b6b6;
 }
 
 
@@ -66,6 +66,15 @@ body .container.body .right_col {
 	font-size:30px !important;
 }
 
+.count_top{
+	font-size: 20px !important;
+	color: white;
+}
+
+.count_bottom{
+	font-size: 13px !important;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -79,9 +88,14 @@ tempData.home={
 
 getOverview:function(){   
  debugger;  
+
+var comp_id = $('#comp_id').val();
   
   var url="ajax/getData.php";
-  var myData={overviewReport:"overviewReport"};
+  var myData={
+	  overviewReport:"overviewReport",
+	  comp_id:comp_id
+	  };
 
        $.ajax({
             type:"POST",
@@ -93,14 +107,15 @@ getOverview:function(){
 
 			if(obj.data!=null){
 				$('#fresher_count').html(obj.data.fresher);
-				$('#experience_count').html(obj.data.experience);
 				$('#internship_count').html(obj.data.internship);
-				$('#college_count').html(obj.data.college);
+				$('#internship_publish').html(obj.data.internship_publish);
+				$('#fresher_publish').html(obj.data.fresher_publish);
+				// $('#college_count').html(obj.data.college);
 			}else{
 				$('#fresher_count').html(0);
-				$('#experience_count').html(0);
 				$('#internship_count').html(0);
-				$('#college_count').html(0);
+				$('#internship_publish').html(0);
+				$('#fresher_publish').html(0);
 			}// else End here  
 
           }// ajax success ends
@@ -122,6 +137,7 @@ $(document).ready(function(){
     <div class="clearfix"></div>
 	 <!--<h2>Overview of Profile</small></h2>-->
 
+<input type='hidden' name="comp_id" id="comp_id">
 
     <div class="x_panel">
         <div class="x_title">
@@ -182,54 +198,33 @@ $(document).ready(function(){
 
           <div class="row tile_count headerCount">
          
-            <div class="col-md-3 col-sm-3 col-xs-12 ">
+            <div class="col-md-4 col-sm-4 col-xs-12 ">
 			<div class="col-md-12 tile_stats_count">
               <span class="count_top"><i class="fa fa-bell"></i> Fresher</span>
-            <div>
-			  <span id="fresher_count" class="count green"></span>
-			  <!-- <span style="font-size:50px;">&#47;</span>
-			  <span id="student_count" class="count1 green">19</span> -->
+            <div style="text-align: right;margin-top: -28px;">
+			  <span id="fresher_publish" class="count green"></span>
+			  <span style="font-size:50px;">&#47;</span>
+			  <span id="fresher_count" class="count1 green"></span><br>
+			  <span class="count_bottom">Published / Job Created</span>
 			</div>
-              <span class="count_bottom">Job Posted</span>
+             
             </div>
             </div>
 
-            <div class="col-md-3 col-sm-3 col-xs-12 ">
-			<div class="col-md-12 tile_stats_count">
-              <span class="count_top"><i class="fa fa-bell"></i> Experience</span>
-			<div>
-			  <span id="experience_count" class="count green"></span>
-			  <!-- <span style="font-size:50px;">&#47;</span>
-			  <span id="student_count" class="count1 green">19</span> -->
-			</div>
-              <span class="count_bottom">Job Posted</span>
-            </div>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-12 ">
+            <div class="col-md-4 col-sm-4 col-xs-12 ">
 			<div class="col-md-12 tile_stats_count">
               <span class="count_top"><i class="fa fa-bell"></i> Internship</span>
-			<div>
-			  <span id="internship_count" class="count green"></span>
-			  <!-- <span style="font-size:50px;">&#47;</span>
-			  <span id="student_count" class="count1 green">19</span> -->
+			  <div style="text-align: right;margin-top: -28px;">
+			  <span id="internship_publish" class="count green"></span>
+			  <span style="font-size:50px;">&#47;</span>
+			  <span id="internship_count" class="count1 green"></span><br>
+			  <span class="count_bottom">Published / Job Created</span>
 			</div>
-              <span class="count_bottom">Job Posted</span>
+              
             </div>
             </div>
 
-			<div class="col-md-3 col-sm-3 col-xs-12 ">
-			<div class="col-md-12 tile_stats_count">
-              <span class="count_top"><i class="fa fa-bell"></i> College</span>
-			<div>
-			  <span id="college_count" class="count green"></span>
-			  <!-- <span style="font-size:50px;">&#47;</span>
-			  <span id="student_count" class="count1 green">19</span> -->
-			</div>
-              <span class="count_bottom">Applied for Job</span>
-            </div>
-            </div>
-
+			
 			
           </div>
           <!-- /top tiles -->

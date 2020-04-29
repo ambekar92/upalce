@@ -63,8 +63,9 @@ loadJobs:function(){
   debugger;
     var url="stureg/getJobDataController.php";
     var stu_id = $('#stu_id').val();
+    var stu_college_id = $('#stu_college_id').val();
     //alert(stu_id);
-	var myData = {getAplliedJobDetails:'getAplliedJobDetails',stu_id:stu_id};
+	var myData = {getAplliedJobDetails:'getAplliedJobDetails',stu_id:stu_id,stu_college_id:stu_college_id};
 	$.ajax({
 	  type:"POST",
 	  url:url,
@@ -177,6 +178,7 @@ applyjob:function(id){
 $(document).ready(function() {
 //setTimeout(function(){  }, 3000);	
 $('#stu_id').val(<?php echo $stu_id; ?>);
+$('#stu_college_id').val(<?php echo $stu_college_id; ?>);
 tempData.uplace.loadJobs();
 //	$('.x_content').hide();
 });
@@ -187,6 +189,7 @@ tempData.uplace.loadJobs();
         <div class="right_col" role="main">
         	
         <input type="hidden" id="stu_id" name="stu_id">
+		<input type="hidden" id="stu_college_id" name="stu_college_id">
 
           <div class="">
             <div class="page-title">          

@@ -60,7 +60,8 @@ loadJobs:function(){
   debugger;
     var url="stureg/getJobDataController.php";
     var stu_id = $('#stu_id').val();
-	var myData = {getJobDetails:'getJobDetails',stu_id:stu_id};
+    var stu_college_id = $('#stu_college_id').val();
+	var myData = {getJobDetails:'getJobDetails',stu_id:stu_id,stu_college_id:stu_college_id};
 	$.ajax({
 	  type:"POST",
 	  url:url,

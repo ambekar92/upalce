@@ -5,6 +5,13 @@ include('links.php');
 include('sup_files/db.php');
 ?>
 
+<style>
+.titleCss{
+  color: darkblue;
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 var deleteVar=null;
 var tempData;
@@ -30,6 +37,7 @@ loadCollegDetails:function(){
             success: function(obj){
 
         if(obj.loadClgDetails==null){
+          
           $('#loadClgDetails').DataTable({
              "paging":false,
               "ordering":true,
@@ -39,6 +47,9 @@ loadCollegDetails:function(){
           }).clear().draw();
 
         }else{
+
+          $('#job_title_desc').html(obj.loadClgDetails[0].job_id+" : "+obj.loadClgDetails[0].title)
+
         var loadCollegDetails = $('#loadClgDetails').DataTable({
             'paging'      : true,
             'lengthChange': false,
@@ -60,7 +71,8 @@ loadCollegDetails:function(){
               { data: "email" },              
               { data: "mobile_number" },              
               { data: "current_location" },              
-              { data: "state" },              
+              { data: "state" },          
+              { data: "stu_count",className:"text-right" },     
               // { data: "contact_person_1" },
               // { data: "mobile_number_1" },
               // { data: "email_id_1" },    
@@ -114,19 +126,20 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:auto;">
+                  <div class="x_content"  style="width:100%;">
+
+                  <span class="titleCss" id="job_title_desc"></span>
                     
                 <table id="loadClgDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Action</th>
-                          <!-- <th>Sl.No.</th> -->
                           <th>College Name</th>
                           <th>Email ID</th>
                           <th>Mobile</th>
                           <th>Location</th>
                           <th>State</th>
-                          <!-- <th>Passing Year</th> -->
+                          <th>No. of Student</th>
                         </tr>
                       </thead>
                     </table>

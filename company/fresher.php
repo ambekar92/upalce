@@ -71,22 +71,22 @@ loadJobDetails:function(){
               },
               { data: "job_id" },
               { data: "title"},
-              { data: "no_position"},
-              { data: "requirement",
-                 render: function (data, type, row, meta) {
-                 var a="<textarea readonly>"+row.requirement+"</textarea>";
-                  return a;
-                }
-              },
-              { data: "descp",
-                render: function (data, type, row, meta) {
-                 var a="<textarea readonly>"+row.descp+"</textarea>";
-                  return a;
-                }
-              },
+              { data: "no_position",className:'text-right'},
+              // { data: "requirement",
+              //    render: function (data, type, row, meta) {
+              //    var a="<textarea readonly>"+row.requirement+"</textarea>";
+              //     return a;
+              //   }
+              // },
+              // { data: "descp",
+              //   render: function (data, type, row, meta) {
+              //    var a="<textarea readonly>"+row.descp+"</textarea>";
+              //     return a;
+              //   }
+              // },
               { data: "location"},
               { data: "contact_email"},
-              { data: "salary",
+              { data: "salary",className:'text-right',
                 render: function (data, type, row, meta) {
                  var a="&#8377;"+tempData.compFresher.formatNumber(row.salary);
                   return a;
@@ -557,7 +557,7 @@ $("#job_update").click(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:scroll;">
+                  <div class="x_content"  style="width:100%;">  <!-- overflow-x:scroll; -->
                     
                    <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
@@ -566,8 +566,8 @@ $("#job_update").click(function(){
                           <th>Job ID</th>
                           <th>Job Title</th>
                           <th>Number Position</th>
-                          <th>Requirement</th>
-                          <th>Description</th>
+                          <!-- <th>Requirement</th>
+                          <th>Description</th> -->
                           <th>Location</th>
                           <th>Contact Email</th>
                           <th>Salary</th>

@@ -45,7 +45,7 @@ $getName2 = mysql_query($sql2) or die("Error :".mysql_error());
 
 if(isset($_POST['checkemail'])){
 
-$email=$_POST["email"];
+  $email=$_POST["email"];
   $sql = "SELECT email FROM ad_companies WHERE email = '$email'";
   //echo $sql;
   $result = mysql_query($sql) or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());
@@ -70,29 +70,31 @@ $email=$_POST["email"];
 
 if(isset($_POST['overviewReport'])){
 
+  $comp_id=$_POST["comp_id"];
+
     $sql = "SELECT
             COUNT(case when type='F' then type end) as fresher,
-            COUNT(case when type='E' then type end) as experience,
+			      COUNT(case when type='F' and publish=1 then type end) as fresher_publish,
             COUNT(case when type='I' then type end) as internship,
-            (select  COUNT(DISTINCT colleg_id) from track_job) as college
-            from co_job_posted";
+            COUNT(case when type='I' and publish=1 then type end) as internship_publish
+            from co_job_posted where reg_comp_id=".$comp_id;
 
     //echo $sql;
-    $result = mysql_query($sql) or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());
+    $result = mysql_query($sql);// or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());
     $num_rows = mysql_num_rows($result);
   
     while ($row=mysql_fetch_array($result)) 
     {
        $fresher=$row['fresher'];
-       $experience=$row['experience'];
        $internship=$row['internship'];
-       $college=$row['college'];
+       $fresher_publish=$row['fresher_publish'];
+       $internship_publish=$row['internship_publish'];
 
        $obj=array(
                     'fresher' =>$fresher,
-                    'experience' =>$experience,
                     'internship' =>$internship,
-                    'college' =>$college
+                    'fresher_publish' =>$fresher_publish,
+                    'internship_publish' =>$internship_publish
                       );
     }
 

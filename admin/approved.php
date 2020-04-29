@@ -59,16 +59,29 @@ loadJobDetails:function(){
                 }
               },
               { data: "comp_name" },
-              { data: "contact_person_1"},
-              { data: "designation_1"},
-              { data: "email_1"},
-              { data: "mobile_number_1"},
-              { data: "company_id",
+              // { data: "contact_person_1"},
+              // { data: "designation_1"},
+              // { data: "email_1"},
+              // { data: "mobile_number_1"},
+              // { data: "company_id",
+              //   render: function (data, type, row, meta) {
+              //    var a=row.state+','+row.country;
+              //     return a;
+              //   }
+              // },    
+              { data: "totaljobs",className:"text-right",
                 render: function (data, type, row, meta) {
-                 var a=row.state+','+row.country;
-                  return a;
+                 //var a=row.state+','+row.country;
+                  return "<p style='font-weight: bold;color:blue;'>"+row.totaljobs+"</p>";
                 }
               },
+              { data: "approvedJobs",className:"text-right",
+                render: function (data, type, row, meta) {
+                 //var a=row.state+','+row.country;
+                  return "<p style='font-weight: bold;color:blue;'>"+row.approvedJobs+"</p>";
+                }
+              }   
+              
               ]
            });
 
@@ -108,18 +121,20 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:auto;">
+                  <div class="x_content"  style="width:100%;">
                     
                    <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Action</th>
                           <th>Company</th>
-                          <th>Contact Person</th>
-                          <th>Designation</th>
-                          <th>Email</th>
-                          <th>Mobile Number</th>
-                          <th>Location</th>
+                          <!-- <th>Contact Person</th>
+                          <th>Designation</th> -->
+                          <!-- <th>Email</th> -->
+                          <!-- <th>Mobile Number</th> -->
+                          <!-- <th>Company Location</th> -->
+                          <th>Posted Jobs</th>
+                          <th>Approved Jobs</th>
                         </tr>
                       </thead>
                     </table>

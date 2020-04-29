@@ -5,6 +5,13 @@ include('links.php');
 include('sup_files/db.php');
 ?>
 
+<style>
+.usnCss{
+  font-weight: 600;
+  color: darkblue;
+  letter-spacing: 1px;
+}
+</style>
 <script type="text/javascript">
 var deleteVar=null;
 var tempData;
@@ -51,21 +58,28 @@ loadJobDetails:function(){
             "data":obj.loadJobDetails,   
             "columns": [
               {
-                sortable: false,
-                "render": function ( data, type, row, meta ) {
-                  var a='';
+                  "data":null,"sortable": false,
+                  "render": function ( data, type, row, meta ) { 
+                    var url='';
 
-                  if(row.clg_approval==1){
-                    a='<span class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-ok"></i> </span>';
-                  }else{
-                    a='<input type="checkbox" name="select_all" value="'+row.id+'"/>';
+                      var view ='<button class="btn btn-info btn-xs" onclick="tempData.appliedJOB.view('+row.student_id+');"><i class="fa fa-eye"></i> View</button>';
+
+                      if('<?php echo $_SERVER['HTTP_HOST'];?>'=='localhost:8088'){
+                        url="http://<?php echo $_SERVER['HTTP_HOST'];?>/student/"+row.resume_name;
+                      }else{
+                        url="http://<?php echo $_SERVER['HTTP_HOST'];?>/student/"+row.resume_name;
+                      }
+
+                      var resume='<a href="'+url+'" target="_blank" title="Resume"><button class="btn btn-warning btn-xs">	<i class="fa fa-file-text" aria-hidden="true"></i> Resume </button> </a>';
+                      	
+                      return resume+''+view;
                   }
-                  
-                return a;
+              },      
+              { data: "usn",
+                "render": function ( data, type, row, meta ) { 
+                  return "<sapn class='usnCss'>"+row.usn+"</sapn>";
                 }
-              },
-              //<a title="Approve" id="btn_'+row.id+'"> <span class="btn btn-danger btn-xs" onclick="tempData.appliedJOB.approve('+row.id+','+row.job_id+','+row.student_id+','+row.colleg_id+');"> <i class="glyphicon glyphicon-trash"></i> </span> </a>           
-              { data: "usn" },              
+              },              
               { data: "firstname" },              
               { data: "gender" },              
               { data: "branch" },              
@@ -84,74 +98,40 @@ loadJobDetails:function(){
           } // ajax success ends
         });   
 },
-approve:function(id,job_id,student_id,colleg_id){
-  // alert(id);
-  // alert(job_id);
-  // alert(student_id);
-  // alert(colleg_id);
+view:function(id){
+	
+//<a href="stu_view_profile.php?stu_id=<?php echo $row["id"]; ?>" target="_blank"></a>
 
-debugger;
-  var selStu = [];
-  $.each($("input[name='select_all']:checked"), function(){            
-      selStu.push($(this).val());
-  });
-
-  //selStu.push(id);
-
-  if(selStu.length>0){
-
-  var url="ajax/getJobDetailsADM.php";
-  var myData={stuApproval:"stuApproval",id:selStu};
-
-          $.ajax({
-            type:"POST",
-            url:url,
-            async: false,
-            dataType: 'json',
-            data:myData,
-            success: function(obj){
-             
-              tempData.appliedJOB.loadJobDetails();
-            }
-          });
-          
-  }else{
-    alert('please select the student');
-  }
-
-
-
+	params  = 'width='+window.outerWidth;
+	params += ', height='+window.outerHeight;
+	params += ', top=0, left=0'
+	params += ', fullscreen=yes,scrollbars: 0';
+	 
+	//alert('<?php echo $_SERVER['HTTP_HOST'];?>');
+	if('<?php echo $_SERVER['HTTP_HOST'];?>'=='localhost:8088'){
+		
+		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
+		
+		var win = window.open("about:blank","",params);
+		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
+		
+		//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/2016/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
+		}
+		else{
+		//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
+		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
+		
+		var win = window.open("about:blank","",params);
+		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
+		
+	}
 },
 gotoJobs:function(compId){
     window.location="appliedJobs.php?comp_id="+compId;
 },
 formatNumber:function (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-},
-publish:function (id){
-  var url="ajax/getJobDetailsFGEI.php";
-  var myData = {publish:'publish', rec_id:id};
-  
-   $.ajax({
-        type:"POST",
-        url:url,
-        async: false,
-        dataType: 'json',
-        data:myData,
-        success: function(obj) {
-          debugger;
-          if(obj.data != null){
-             $("#commondialog").modal({backdrop:'static'});
-             $("#getCode").html(obj.data.info);
-             tempData.appliedJOB.loadJobDetails();
-          }else{
-            $("#commondialog").modal({backdrop:'static'});
-            $("#getCode").html('<p>Please Try Again !!</p>'); 
-          }
-        }
-  });
-},
-
+}
 };
 
 
@@ -213,15 +193,12 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%; overflow-x:auto;">
+                  <div class="x_content"  style="width:100%; "> <!--overflow-x:auto; -->
                     
                 <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
-                          <th>
-                            <input type="checkbox" name="select_all[]" id="select_all" /> 
-					                	<span id="delete_btn"><button type="button" onClick=tempData.appliedJOB.approve(); name="delete_all" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-ok"></i> </button></span>
-                          </th>
+                          <th>Action</th>
                           <!-- <th>Sl.No.</th> -->
                           <th>USN</th>
                           <th>First Name</th>

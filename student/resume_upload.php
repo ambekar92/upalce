@@ -38,13 +38,15 @@ if(isset($_GET['delete']))
 if(isset($_POST['submit_data']))
 {
 	$user_id=$_POST["user_id"];
-	$resume_number='STU_RESUME_'.rand(111111,999999).'_';
+	//$resume_number='STU_RESUME_'.rand(111111,999999).'_';
 	/* $img_name=$_POST["pro_img"];
 	unlink("../$img_name"); */
 		$file_names = $_FILES['resume_name']['name'];
 			$file_sizes =$_FILES['resume_name']['size'];
 			$file_tmps =$_FILES['resume_name']['tmp_name'];
 			$file_types=$_FILES['resume_name']['type'];
+
+			$resume_number='STU_RESUME_'.rand(111111,999999).'_'.$file_names;
 			
 		//echo $file_names."$user_id--asdasd"; die;
 		   
@@ -53,9 +55,9 @@ if(isset($_POST['submit_data']))
 
 			if(in_array($imgExt, $valid_extensions)){
 					if($resume_count != '3'){	
-						if(move_uploaded_file($file_tmps,"resume_uploads/$resume_number".$file_names)) 
+						if(move_uploaded_file($file_tmps,"resume_uploads/".$resume_number)) 
 						{	
-							$paths="resume_uploads/$resume_number".$file_names;
+							$paths="resume_uploads/".$resume_number;
 							//$sql = "UPDATE stu_student set resume_name='$paths' WHERE id = '$user_id'";
 							$sql = "insert into stu_resume (fk_stu_id,resume_name,set_value) values('$stu_id','$paths','inactive')";
 							$result = mysql_query($sql) or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());

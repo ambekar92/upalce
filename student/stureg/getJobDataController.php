@@ -51,13 +51,18 @@ function mysql_update_array($table, $data, $exclude = array(),$cond) {
 /* get all Saved JOB */
 if(isset($_POST['getJobDetails'])){
 
-  $comp_id=$_POST['comp_id'];
+  $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
-  $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-	c.profile_img,c.comp_name,jp.comp_job_id  
-	FROM co_job_posted jp,ad_companies c 
-	WHERE type IN ('G','F') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.") order by last_date DESC";
+//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
+// 	c.profile_img,c.comp_name,jp.comp_job_id  
+// 	FROM co_job_posted jp,ad_companies c 
+// 	WHERE type IN ('G','F') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.") order by last_date DESC";
+
+   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
+  c.profile_img,c.comp_name,jp.comp_job_id  
+  From co_job_posted jp,ad_companies c,track_job tj
+  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and NOT FIND_IN_SET('".$stu_id."',tj.student_id) order by last_date DESC";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -109,13 +114,19 @@ if(isset($_POST['getJobDetails'])){
 /* get all Applied JOB */
 if(isset($_POST['getAplliedJobDetails'])){
 
-  $comp_id=$_POST['comp_id'];
+  $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
+//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
+// 	c.profile_img,c.comp_name,jp.comp_job_id 
+// 	FROM co_job_posted jp,ad_companies c 
+// 	WHERE type IN ('G','F','I') and publish=1 and jp.reg_comp_id=c.id and jp.id IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id." order by tj.id desc)";
+    
   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-	c.profile_img,c.comp_name,jp.comp_job_id 
-	FROM co_job_posted jp,ad_companies c 
-	WHERE type IN ('G','F','I') and publish=1 and jp.reg_comp_id=c.id and jp.id IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id." order by tj.id desc)";
+  c.profile_img,c.comp_name,jp.comp_job_id,tj.student_id
+  From co_job_posted jp,ad_companies c,track_job tj
+  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and jp.type <>'E' and FIND_IN_SET('".$stu_id."',tj.student_id) 
+  ";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -170,16 +181,43 @@ if(isset($_POST['applyJob'])){
   $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   $job_id=$_POST['job_id'];
-  
-        $DataMarge=array('job_id'=>$job_id,
-                    'student_id'=>$stu_id,
-                    'colleg_id'=>$stu_college_id,
-                    'status'=>1
-                );
+
+    $checkStu = "SELECT * FROM stu_student st, stu_education se 
+    where st.id=se.fk_stu_id and se.class='Graduation' and st.id=".$stu_id;
+    $checkStuRes=mysql_query($checkStu) or die('Error:'.mysql_error());
+
+    $number=mysql_num_rows($checkStuRes);
+
+if($number>0){
+
+    $getoldval="SELECT * from track_job tj
+    where job_id=".$job_id." AND college_id=".$stu_college_id;
+    $getoldvalRes=mysql_query($getoldval) or die('Error:'.mysql_error());
+
+    while($row=mysql_fetch_array($getoldvalRes)){
+      $rec_id=$row['id'];
+      $student_id=$row['student_id'];
+    }
+
+        if($student_id==null){
+            $student_str = $stu_id;
+        }else{
+            // Convert Student ID String to Array
+            $student_arr = explode(",",$student_id);
+
+            // Add Student ID to converted Array
+            array_push($student_arr,$stu_id);
+
+            //print_r($student_arr);
+            // Convert array to string and update in table column
+            $student_str = implode(",",$student_arr);
+        }
+   
+        $DataMarge=array('student_id'=>$student_str);
         $table='track_job';
+        $cond = ' job_id='.$job_id.' and college_id='.$stu_college_id;
         // Function say generate complete query        
-        $sqlQuery = mysql_insert_array($table, $DataMarge, "submit"); 
-        //echo $sqlQuery;
+        $sqlQuery = mysql_update_array($table, $DataMarge, "submit",$cond); 
         $res=mysql_query($sqlQuery); //or die('Error: ' . mysql_error($con));
         
         if(!$res) {
@@ -197,6 +235,12 @@ if(isset($_POST['applyJob'])){
                 $response['infoRes']='E'; //Error
             }            
         }
+
+    }else{
+        $msg="Please Update your Education Details, Cadicate Home -> Education";
+        $response['info']=$msg;
+        $response['infoRes']='E'; //Error
+    }        
         
         $status["data"] =$response;
         echo json_encode($status);  
@@ -207,13 +251,18 @@ if(isset($_POST['applyJob'])){
 /* get all Saved JOB */
 if(isset($_POST['getInterJobDetails'])){
 
-  $comp_id=$_POST['comp_id'];
+  $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
+//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
+// 	c.profile_img,c.comp_name,jp.comp_job_id  
+// 	FROM co_job_posted jp,ad_companies c 
+// 	WHERE type IN ('I') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.")";
+
   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-	c.profile_img,c.comp_name,jp.comp_job_id  
-	FROM co_job_posted jp,ad_companies c 
-	WHERE type IN ('I') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.")";
+  c.profile_img,c.comp_name,jp.comp_job_id,tj.student_id
+  From co_job_posted jp,ad_companies c,track_job tj
+  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and jp.type ='I' and NOT FIND_IN_SET('".$stu_id."',tj.student_id)";
     
  // echo $getSql; 
    

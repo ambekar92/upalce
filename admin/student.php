@@ -164,9 +164,11 @@ var url ='adminreg/condition.php?data_id='+data+'&inactive_link=D';
 });	 
 }
 
-//<a href="stu_view_profile.php?stu_id=<?php echo $row["id"]; ?>" target="_blank"></a>
 function view(id)
 {
+	
+//<a href="stu_view_profile.php?stu_id=<?php echo $row["id"]; ?>" target="_blank"></a>
+
 	params  = 'width='+window.outerWidth;
 	params += ', height='+window.outerHeight;
 	params += ', top=0, left=0'
@@ -175,7 +177,7 @@ function view(id)
 	//alert('<?php echo $_SERVER['HTTP_HOST'];?>');
 	if('<?php echo $_SERVER['HTTP_HOST'];?>'=='localhost:8088'){
 		
-		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/2016/admin/stu_view_profile.php?stu_id="+id;
+		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
 		
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
