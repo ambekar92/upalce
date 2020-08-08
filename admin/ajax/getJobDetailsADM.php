@@ -63,7 +63,7 @@ if(isset($_POST['getSavedJobDetails'])){
 
   $getSql="SELECT count(*) as totaljobs,c.id as company_id,profile_img,comp_id,comp_name,email,indus_type,contact_person_1, designation_1, mobile_number_1,email_1,country,state,current_location 
   FROM co_job_posted jp,ad_companies c 
-  WHERE jp.reg_comp_id=c.id and jp.type <> 'E' and jp.publish=1 GROUP BY company_id;";
+  WHERE jp.reg_comp_id=c.id and jp.type <> 'E' and jp.publish=1 and (clg_id like '%".$college_id."%' OR clg_id='[]') GROUP BY company_id;";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -124,15 +124,10 @@ if(isset($_POST['getCompJobsList'])){
   $college_id=$_POST['college_id'];
   $comp_id=$_POST['comp_id'];
 
-//   $getSql="SELECT jp.type,jp.id,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,
-//   jp.salary,jp.last_date,jp.comp_job_id  
-//   FROM co_job_posted jp 
-//   WHERE  jp.reg_comp_id=".$comp_id." and jp.type<>'E' order by jp.last_date DESC";
-
+  
 $getSql="SELECT jp.type,jp.id,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,
 jp.salary,jp.last_date,jp.comp_job_id, tj.clg_approval,(length(student_id) - length(replace(student_id, ',', '')) + 1) as stu_count,clg_to_hr_status
-FROM co_job_posted jp left join (select * from track_job tj where tj.college_id=".$college_id.") tj on tj.job_id=jp.id
-WHERE  jp.reg_comp_id=".$comp_id." and jp.type<>'E' and jp.publish=1 order by jp.last_date DESC";
+FROM co_job_posted jp left join (select * from track_job tj where tj.college_id=".$college_id.") tj on tj.job_id=jp.id WHERE  jp.reg_comp_id=".$comp_id." and jp.type<>'E' and jp.publish=1 and (clg_id like '%".$college_id."%' OR clg_id='[]') order by jp.last_date DESC";
 
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());

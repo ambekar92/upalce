@@ -71,14 +71,38 @@ if(isset($_POST['saveJob'])){
     $contact_email=$_POST['contact_email'];
     $salary=$_POST['salary'];
     $comp_job_id=$_POST['job_id'];
+    
+    $colleges=$_POST['colleges'];
+    
+    if($colleges==''){
+        $colleges='[]';   
+    }else{
+        $colleges= serialize($_POST['colleges']);
+    }
+    
+
+    // echo $colleges;
+    // die;
+
+    //serialize([Array]);
+    //unserialize([Serialized value]);
+    //echo "<pre>";
+    //print_r(serialize($colleges));
+    //echo "</pre>";
+
+    //echo "<pre>";
+    //print_r(unserialize($colleges));
+    //echo "</pre>";
+
 
     $job_id = 'JOB_REG_'.rand(1111111111,9999999999);
-
     $table = 'co_job_posted';
+
 //echo $last_date;
+
     if($record_id == ""){
 
-      $DataMarge=array('reg_comp_id'=>$comp_id,
+        $DataMarge=array('reg_comp_id'=>$comp_id,
                     'type'=>$job_type,
                     'job_id'=>$job_id,
                     'title'=>$job_title,
@@ -89,11 +113,13 @@ if(isset($_POST['saveJob'])){
                     'contact_email'=>$contact_email,
                     'salary'=>$salary,
                     'last_date'=>$last_date,
-                    'comp_job_id'=>$comp_job_id
+                    'comp_job_id'=>$comp_job_id,
+                    'clg_id'=>$colleges
                 );
         
         // Function say generate complete query        
         $sqlQuery = mysql_insert_array($table, $DataMarge, "submit"); 
+        die();
         $res=mysql_query($sqlQuery); //or die('Error: ' . mysql_error($con));
         
         if(!$res) {
@@ -123,12 +149,15 @@ if(isset($_POST['saveJob'])){
                     'contact_email'=>$contact_email,
                     'salary'=>$salary,
                     'last_date'=>$last_date,
-                    'comp_job_id'=>$comp_job_id
+                    'comp_job_id'=>$comp_job_id,
+                    'clg_id'=>$colleges
                 );
 
         $cond=' id='.$record_id;
         $sqlQuery = mysql_update_array($table, $DataMarge, "submit",$cond); // Function say generate complete query
-       // echo $sqlQuery;
+        // echo $sqlQuery;
+        // die();
+        
         $res=mysql_query($sqlQuery); //or die('Error: ' . mysql_error($con));
         
         if(!$res) {
@@ -159,8 +188,7 @@ if(isset($_POST['getSavedJobDetails'])){
   $comp_id=$_POST['comp_id'];
   $type=$_POST['type'];
   
-  $getSql="SELECT id,reg_comp_id,type,job_id,title,descp,requirement,no_position,location,contact_email,
-    salary,last_date,modified,publish,comp_job_id FROM co_job_posted WHERE reg_comp_id=".$comp_id." and type='".$type."'";
+  $getSql="SELECT id,reg_comp_id,type,job_id,title,descp,requirement,no_position,location,contact_email,salary,last_date,modified,publish,comp_job_id,clg_id FROM co_job_posted WHERE reg_comp_id=".$comp_id." and type='".$type."'";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -180,6 +208,7 @@ if(isset($_POST['getSavedJobDetails'])){
         $modified=$row['modified'];
         $publish=$row['publish'];
         $comp_job_id=$row['comp_job_id'];
+        $clg_id=$row['clg_id'];
 
         $getJobDetails[]=array('id' =>"$id",
             'reg_comp_id' =>"$reg_comp_id",
@@ -196,6 +225,7 @@ if(isset($_POST['getSavedJobDetails'])){
             'modified' => "$modified",
             'publish' => "$publish",
             'comp_job_id' => "$comp_job_id",
+            'clg_id' => unserialize($clg_id),
         );
         
     }

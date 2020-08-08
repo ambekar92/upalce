@@ -58,12 +58,6 @@ loadJobDetails:function(){
                   return a;
                 }
               },
-              //   <th>Company</th>
-              //             <th>Contact Person</th>
-              //             <th>Designation</th>
-              //             <th>Email</th>
-              //             <th>Mobile Number</th>
-              //             <th>Location</th>
               { data: "comp_name" },
               { data: "contact_person_1"},
               { data: "designation_1"},
@@ -75,6 +69,18 @@ loadJobDetails:function(){
                   return a;
                 }
               },
+              { data: "totaljobs",className:"text-right",
+                render: function (data, type, row, meta) {
+                 //var a=row.state+','+row.country;
+                  return "<p style='font-weight: bold;color:blue;'>"+row.totaljobs+"</p>";
+                }
+              },
+              { data: "approvedJobs",className:"text-right",
+                render: function (data, type, row, meta) {
+                 //var a=row.state+','+row.country;
+                  return "<p style='font-weight: bold;color:blue;'>"+row.approvedJobs+"</p>";
+                }
+              }  
               ]
            });
 
@@ -126,6 +132,8 @@ $(document).ready(function(){
                           <th>Email</th>
                           <th>Mobile Number</th>
                           <th>Location</th>
+                          <th>Posted Jobs</th>
+                          <th>Approved Jobs</th>
                         </tr>
                       </thead>
                     </table>

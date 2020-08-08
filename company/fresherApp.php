@@ -106,18 +106,18 @@ loadJobDetails:function(){
                 }
               },
               { data: "last_date"},
-              { data: "college_count",className: "text-right",
-                render: function (data, type, row, meta) {
-                  var a= "<span class='hightlight'>"+row.college_count+"</span>";
-                  return a;
-                }
-              },
-              { data: "stu_count",className: "text-right",
-                render: function (data, type, row, meta) {
-                  var a= "<span class='hightlight'>"+row.stu_count+"</span>";
-                  return a;
-                }
-              }
+              // { data: "college_count",className: "text-right",
+              //   render: function (data, type, row, meta) {
+              //     var a= "<span class='hightlight'>"+row.college_count+"</span>";
+              //     return a;
+              //   }
+              // },
+              // { data: "stu_count",className: "text-right",
+              //   render: function (data, type, row, meta) {
+              //     var a= "<span class='hightlight'>"+row.stu_count+"</span>";
+              //     return a;
+              //   }
+              // }
               ]
            });
 
@@ -190,8 +190,8 @@ tempData.compFresher.loadJobDetails();
                           <th>Contact Email</th>
                           <th>Salary</th>
                           <th>Last Date</th>                                                  
-                          <th>College Count</th>                                                  
-                          <th>Student Count</th>                                                  
+                          <!-- <th>College Count</th>                                                  
+                          <th>Student Count</th>                                                   -->
                         </tr>
                       </thead>
                     </table>

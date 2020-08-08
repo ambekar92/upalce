@@ -85,7 +85,7 @@ if(isset($_POST['getCollegeList'])){
   $comp_id=$_POST['comp_id'];
   $job_id=$_POST['job_id'];  
 
- $getSql="SELECT jp.title,jp.job_id,tj.id as id,clg_id,clg_name,email,mobile_number,current_location,state,contact_person_1,mobile_number_1,email_id_1,(length(student_id) - length(replace(student_id, ',', '')) + 1) as stu_count
+ $getSql="SELECT jp.title,jp.job_id,tj.id as id,aa.clg_id as clg_id,clg_name,email,mobile_number,current_location,state,contact_person_1,mobile_number_1,email_id_1,(length(student_id) - length(replace(student_id, ',', '')) + 1) as stu_count
  FROM track_job tj,ad_admin aa,co_job_posted jp
 WHERE tj.job_id=".$job_id." and tj.clg_to_hr_status=1 and tj.college_id=aa.clg_id group by tj.college_id";
     
@@ -164,8 +164,8 @@ MAX(if(e.class='12',e.secured,'-')) as 12s_perc,
 MAX(if(e.class='Graduation',e.secured,'-')) as be_perc,
 MAX(if(e.class='Graduation',e.branch,'-')) as branch 
 FROM track_job tj,co_job_posted jp,stu_student s,stu_education e 
-WHERE s.id IN (".$student_id.") and s.id=e.fk_stu_id and tj.job_id=6 
-and tj.college_id=416 GROUP BY s.id";   
+WHERE s.id IN (".$student_id.") and s.id=e.fk_stu_id and tj.job_id=".$job_id."  
+and tj.college_id=".$college_id." GROUP BY s.id";   
 
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   

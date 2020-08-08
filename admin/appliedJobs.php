@@ -5,6 +5,11 @@ include('links.php');
 include('sup_files/db.php');
 ?>
 
+<style>
+.label {
+  font-weight: unset !important;
+}
+</style>
 <script type="text/javascript">
 var deleteVar=null;
 var tempData;
@@ -72,9 +77,9 @@ loadJobDetails:function(){
                    var f,a,b;
 
                    if(row.type=='F'){
-                    f='Fresher';
+                    f='<span class="label label-default"> Fresher </span>';
                    }else{
-                    f='Internship';
+                    f='<span class="label label-default"> Internship </span>';
                    }
                  
                   return f;
@@ -110,8 +115,8 @@ loadJobDetails:function(){
               
               { data: "id",
                 render: function (data, type, row, meta) {
-                  var b='<button type="button" title="Edit" class="btn btn-primary btn-xs" onclick="tempData.appliedJOB.clg_to_hr('+row.id+');"><i class="fa fa-check-circle"></i> Approve </button>';
-                  var a='<button type="button" title="Approved" class="btn btn-warning btn-xs"><i class="fa fa-check"></i> </button>';
+                  var b='<button type="button" title="Edit" class="btn btn-primary btn-xs" onclick="tempData.appliedJOB.clg_to_hr('+row.id+');"><i class="fa fa-arrow-right"></i> Send to HR </button>';
+                  var a='<button type="button" title="Sent" class="btn btn-warning btn-xs"><i class="fa fa-check"></i>  Sent </button>';
                   
                   if(row.clg_approval==1){
 
@@ -124,7 +129,7 @@ loadJobDetails:function(){
                         }
 
                     }else{
-                        show = "Student Count < 0";
+                        show = '<span class="label label-default"> Student Count < 0 </span>';
                     }
                     
                   }else{

@@ -4,7 +4,7 @@ include('db.php');
 	
 	
 //	$country_id=$_POST["country_id"];
-	$sql = "SELECT * FROM su_active_clgs";
+	$sql = "SELECT * FROM su_active_clgs order by modified DESC";
 	//echo $sql;
 	$states = mysql_query($sql) or die("Error in Selection Query <br> ".$sql."<br>". mysql_error());
  
