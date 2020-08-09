@@ -20,5 +20,7 @@ while($row=mysql_fetch_array($p_num))
 	$server_password=$row['password']; 
 }
 
+//Main Database
+
 
 ?>
