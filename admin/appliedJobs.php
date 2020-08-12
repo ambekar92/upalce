@@ -70,6 +70,33 @@ loadJobDetails:function(){
                   return show;
                 }
               },
+              
+              { data: "id",
+                render: function (data, type, row, meta) {
+                  var b='<button type="button" title="Edit" class="btn btn-primary btn-xs" onclick="tempData.appliedJOB.clg_to_hr('+row.id+');"><i class="fa fa-arrow-right"></i> Send to HR </button>';
+                  var a='<button type="button" title="Sent" class="btn btn-warning btn-xs"><i class="fa fa-check"></i>  Sent </button>';
+                  
+                  if(row.clg_approval==1){
+
+                    if(row.stu_count > 0){
+
+                        if(row.clg_to_hr_status==1){
+                          show = a;
+                        }else{
+                            show = b;
+                        }
+
+                    }else{
+                        show = '<span class="label label-default"> Student Count < 0 </span>';
+                    }
+                    
+                  }else{
+                    show = "Approval Needed";
+                  }
+                
+                  return show;
+                }
+              },
               { data: "job_id" },  
              
               { data: "type",
@@ -112,33 +139,10 @@ loadJobDetails:function(){
                  return a;
                  }
               },
+              { data: "contact_name"},
+              { data: "contact_number"},
+              { data: "contact_email"}
               
-              { data: "id",
-                render: function (data, type, row, meta) {
-                  var b='<button type="button" title="Edit" class="btn btn-primary btn-xs" onclick="tempData.appliedJOB.clg_to_hr('+row.id+');"><i class="fa fa-arrow-right"></i> Send to HR </button>';
-                  var a='<button type="button" title="Sent" class="btn btn-warning btn-xs"><i class="fa fa-check"></i>  Sent </button>';
-                  
-                  if(row.clg_approval==1){
-
-                    if(row.stu_count > 0){
-
-                        if(row.clg_to_hr_status==1){
-                          show = a;
-                        }else{
-                            show = b;
-                        }
-
-                    }else{
-                        show = '<span class="label label-default"> Student Count < 0 </span>';
-                    }
-                    
-                  }else{
-                    show = "Approve Needed";
-                  }
-                
-                  return show;
-                }
-              }
               ]
            });
 
@@ -263,12 +267,13 @@ $(document).ready(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%;">   <!--overflow-x:scroll; -->
+                  <div class="x_content"  style="overflow-x:scroll;">   <!--overflow-x:scroll; -->
                     
-                <table id="loadJobDetails" class="table table-striped table-bordered" style="width:100%;">
+                <table id="loadJobDetails" class="table table-striped table-bordered" style="width:140%;">
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Post Jobs to Students</th>
+                          <th>Send List to HR</th>
                           <th>Job ID</th>
                           <th>Type</th>                    
                           <th>Title</th>
@@ -279,7 +284,10 @@ $(document).ready(function(){
                           <th>Location</th>
                           <th>Student Count</th>
                           <th>Last Date</th>
-                          <th>Send List to HR</th>
+                          <th>Contact Name</th>
+                          <th>Contact Number</th>
+                          <th>Contact Email</th>
+                          
                         </tr>
                       </thead>
                     </table>

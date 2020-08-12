@@ -49,7 +49,15 @@ loadStudentDetails:function(){
             "destroy":true,
             "data":obj.loadStudentDetails,   
             "columns": [             
-              { data: "sl_no" },              
+              { data: "sl_no" },       
+              {
+                "data":null,"sortable": false,
+                "render": function ( data, type, row, meta ) {
+                  return '<button class="btn btn-primary btn-xs" onclick="tempData.appliedJOB.view('+row.student_id+');">View Profile</button>'
+                  +'<a href=../student/'+encodeURI(row.resume_name)+' target="_blank" title="Resume"> <button class="btn btn-warning btn-xs">'
+                  +'Resume </button> </a>';	
+                }
+              },       
               { data: "firstname" },              
               { data: "10s_perc" },              
               { data: "12s_perc" },              
@@ -70,6 +78,31 @@ gotoStudent:function(job_id,college_id){
 formatNumber:function (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 },
+view:function(id)
+{
+	params  = 'width='+window.outerWidth;
+	params += ', height='+window.outerHeight;
+	params += ', top=0, left=0'
+	params += ', fullscreen=yes,scrollbars: 0';
+	 
+	//alert('<?php echo $_SERVER['HTTP_HOST'];?>');
+	if('<?php echo $_SERVER['HTTP_HOST'];?>'=='localhost:8088'){
+		
+		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
+		
+		var win = window.open("about:blank","",params);
+		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
+		
+	//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/2016/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
+	}else{
+	//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
+		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
+		
+		var win = window.open("about:blank","",params);
+		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
+		
+	}
+}
 
 };
 
@@ -109,6 +142,7 @@ $(document).ready(function(){
                       <thead>
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Sl.No</th>
+                          <th>Action</th>
                           <th>Student Name</th>
                           <th>10th %</th>
                           <th>12th %</th>

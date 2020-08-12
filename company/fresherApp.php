@@ -98,6 +98,8 @@ loadJobDetails:function(){
               //   }
               // },
               { data: "location"},
+              { data: "contact_name"},
+              { data: "contact_number"},
               { data: "contact_email"},
               { data: "salary",className: "text-right",
                 render: function (data, type, row, meta) {
@@ -187,6 +189,8 @@ tempData.compFresher.loadJobDetails();
                           <!-- <th>Requirement</th>
                           <th>Description</th> -->
                           <th>Location</th>
+                          <th>Contact Name</th>
+                          <th>Contact Number</th>
                           <th>Contact Email</th>
                           <th>Salary</th>
                           <th>Last Date</th>                                                  

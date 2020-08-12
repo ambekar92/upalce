@@ -68,6 +68,8 @@ if(isset($_POST['saveJob'])){
     $requirement=$_POST['requirement'];
     $descp=$_POST['descp'];
     $location=$_POST['location'];
+    $contact_name=$_POST['contact_name'];
+    $contact_number=$_POST['contact_number'];
     $contact_email=$_POST['contact_email'];
     $salary=$_POST['salary'];
     $comp_job_id=$_POST['job_id'];
@@ -110,6 +112,8 @@ if(isset($_POST['saveJob'])){
                     'requirement'=>$requirement,
                     'no_position'=>$no_position,
                     'location'=>$location,
+                    'contact_name'=>$contact_name,
+                    'contact_number'=>$contact_number,
                     'contact_email'=>$contact_email,
                     'salary'=>$salary,
                     'last_date'=>$last_date,
@@ -119,7 +123,7 @@ if(isset($_POST['saveJob'])){
         
         // Function say generate complete query        
         $sqlQuery = mysql_insert_array($table, $DataMarge, "submit"); 
-        die();
+        //die();
         $res=mysql_query($sqlQuery); //or die('Error: ' . mysql_error($con));
         
         if(!$res) {
@@ -146,6 +150,8 @@ if(isset($_POST['saveJob'])){
                     'requirement'=>$requirement,
                     'no_position'=>$no_position,
                     'location'=>$location,
+                    'contact_name'=>$contact_name,
+                    'contact_number'=>$contact_number,
                     'contact_email'=>$contact_email,
                     'salary'=>$salary,
                     'last_date'=>$last_date,
@@ -188,7 +194,7 @@ if(isset($_POST['getSavedJobDetails'])){
   $comp_id=$_POST['comp_id'];
   $type=$_POST['type'];
   
-  $getSql="SELECT id,reg_comp_id,type,job_id,title,descp,requirement,no_position,location,contact_email,salary,last_date,modified,publish,comp_job_id,clg_id FROM co_job_posted WHERE reg_comp_id=".$comp_id." and type='".$type."'";
+  $getSql="SELECT id,reg_comp_id,type,job_id,title,descp,requirement,no_position,location,contact_name,contact_number,contact_email,salary,last_date,modified,publish,comp_job_id,clg_id FROM co_job_posted WHERE reg_comp_id=".$comp_id." and type='".$type."'";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -202,6 +208,8 @@ if(isset($_POST['getSavedJobDetails'])){
         $requirement=$row['requirement'];
         $no_position=$row['no_position'];
         $location=$row['location'];
+        $contact_name=$row['contact_name'];
+        $contact_number=$row['contact_number'];
         $contact_email=$row['contact_email'];
         $salary=$row['salary'];
         $last_date=date('d/m/Y', strtotime($row['last_date']));
@@ -219,6 +227,8 @@ if(isset($_POST['getSavedJobDetails'])){
             'requirement' =>"$requirement",
             'no_position' => "$no_position",
             'location' => "$location",
+            'contact_name' => "$contact_name",
+            'contact_number' => "$contact_number",
             'contact_email' => "$contact_email",
             'salary' => "$salary",
             'last_date' => "$last_date",

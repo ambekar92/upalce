@@ -59,10 +59,10 @@ loadJobDetails:function(){
                 }
               },
               { data: "comp_name" },
-              { data: "contact_person_1"},
-              { data: "designation_1"},
-              { data: "email_1"},
-              { data: "mobile_number_1"},
+              //{ data: "contact_person_1"},
+              //{ data: "designation_1"},
+              //{ data: "email_1"},
+              //{ data: "mobile_number_1"},
               { data: "company_id",
                 render: function (data, type, row, meta) {
                  var a=row.state+','+row.country;
@@ -127,10 +127,10 @@ $(document).ready(function(){
                         <tr style="background-color:#2a3f54;color:#d7dcde;">
                           <th>Action</th>
                           <th>Company</th>
-                          <th>Contact Person</th>
+                          <!-- <th>Contact Person</th>
                           <th>Designation</th>
                           <th>Email</th>
-                          <th>Mobile Number</th>
+                          <th>Mobile Number</th> -->
                           <th>Location</th>
                           <th>Posted Jobs</th>
                           <th>Approved Jobs</th>

@@ -54,15 +54,11 @@ if(isset($_POST['getJobDetails'])){
   $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
-//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-// 	c.profile_img,c.comp_name,jp.comp_job_id  
-// 	FROM co_job_posted jp,ad_companies c 
-// 	WHERE type IN ('G','F') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.") order by last_date DESC";
 
    $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
   c.profile_img,c.comp_name,jp.comp_job_id  
   From co_job_posted jp,ad_companies c,track_job tj
-  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and NOT FIND_IN_SET('".$stu_id."',tj.student_id) order by last_date DESC";
+  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and NOT FIND_IN_SET('".$stu_id."',tj.student_id)  and jp.type='F' order by last_date DESC";
     
   $jobDetails=mysql_query($getSql) or die('Error:'.mysql_error());
   
@@ -117,11 +113,6 @@ if(isset($_POST['getAplliedJobDetails'])){
   $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
-//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-// 	c.profile_img,c.comp_name,jp.comp_job_id 
-// 	FROM co_job_posted jp,ad_companies c 
-// 	WHERE type IN ('G','F','I') and publish=1 and jp.reg_comp_id=c.id and jp.id IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id." order by tj.id desc)";
-    
   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
   c.profile_img,c.comp_name,jp.comp_job_id,tj.student_id
   From co_job_posted jp,ad_companies c,track_job tj
@@ -254,15 +245,10 @@ if(isset($_POST['getInterJobDetails'])){
   $stu_college_id=$_POST['stu_college_id'];
   $stu_id=$_POST['stu_id'];
   
-//   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-// 	c.profile_img,c.comp_name,jp.comp_job_id  
-// 	FROM co_job_posted jp,ad_companies c 
-// 	WHERE type IN ('I') and publish=1 and jp.reg_comp_id=c.id and jp.id NOT IN (SELECT tj.job_id FROM track_job tj WHERE tj.student_id=".$stu_id.")";
-
-  $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
-  c.profile_img,c.comp_name,jp.comp_job_id,tj.student_id
+   $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.publish,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,jp.salary,jp.last_date,jp.modified,
+  c.profile_img,c.comp_name,jp.comp_job_id 
   From co_job_posted jp,ad_companies c,track_job tj
-  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and jp.type ='I' and NOT FIND_IN_SET('".$stu_id."',tj.student_id)";
+  where tj.job_id=jp.id and jp.reg_comp_id=c.id and tj.college_id='".$stu_college_id."' and jp.type ='I' and NOT FIND_IN_SET('".$stu_id."',tj.student_id) order by last_date DESC";
     
  // echo $getSql; 
    

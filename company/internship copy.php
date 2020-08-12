@@ -5,40 +5,9 @@ include('links.php');
 include('sup_files/db.php');
 ?>
 
-<style>
-  #bodyContent{
-  color: #020202;
-  }
-
-  .spl{
-    font-weight: bold;
-    color: blueviolet;
-  }
-
-  .select2-container--default .select2-selection--multiple{
-		border-radius: 0px !important;
-	}
-	.select2-container--default .select2-selection--single{
-		border-radius: 0px !important;
-		min-height: 32px;
-	}
-	.select2-container--default .select2-selection--single .select2-selection__rendered{
-		line-height: 21px;
-	}
-
-
-</style>
-<link rel="stylesheet" type="text/css" href="text_editorjs/src/bootstrap-wysihtml5.css"></link>
-<link rel="stylesheet" type="text/css" href="text_editorjs/btn_editor.css"></link>
-
-<script src="text_editorjs/lib/js/wysihtml5-0.3.0.js"></script>
-<script src="text_editorjs/src/bootstrap-wysihtml5.js"></script>
-
-
 <script type="text/javascript">
 var deleteVar=null;
 var globalJOBData=null;
-var globalSelectedJobData=null;
 var tempData;
 if(tempData===null||tempData===undefined){
    tempData={};
@@ -90,13 +59,14 @@ loadJobDetails:function(){
                   var c='<button type="button" title="Publish" class="btn btn-success btn-xs" onclick="tempData.compFresher.publish('+row.id+');">Publish <i class="fa fa-send"></i> </button>';
                   var d='<button type="button" title="Publish" class="btn btn-warning btn-xs"> Published </button>';
                   var e='<button type="button" title="View" class="btn btn-info btn-xs" onclick="tempData.compFresher.viewInfo('+row.id+');"><i class="fa fa-eye"></i> </button>';
-               
+
                   if(row.publish==0){
                     print=a+' '+b+' '+e+' '+c;
                   }else{
                     print=a+' '+e+' '+d;
                   }
                   return print;
+
                 }
               },
               { data: "job_id" },
@@ -115,12 +85,10 @@ loadJobDetails:function(){
               //   }
               // },
               { data: "location"},
-              { data: "contact_name"},
-              { data: "contact_number"},
               { data: "contact_email"},
               { data: "salary",className:'text-right',
                 render: function (data, type, row, meta) {
-                 var a="&#8377;"+tempData.compFresher.formatNumber(row.salary);
+                 var a="&#8377;"+' '+tempData.compFresher.formatNumber(row.salary);
                   return a;
                 }
               },
@@ -133,6 +101,29 @@ loadJobDetails:function(){
           } // ajax success ends
         });   
 },
+publish:function (id){
+  var url="ajax/getJobDetailsFGEI.php";
+  var myData = {publish:'publish', rec_id:id};
+  
+   $.ajax({
+        type:"POST",
+        url:url,
+        async: false,
+        dataType: 'json',
+        data:myData,
+        success: function(obj) {
+          debugger;
+          if(obj.data != null){
+             $("#commondialog").modal({backdrop:'static'});
+             $("#getCode").html(obj.data.info);
+             tempData.compFresher.loadJobDetails();
+          }else{
+            $("#commondialog").modal({backdrop:'static'});
+            $("#getCode").html('<p>Please Try Again !!</p>'); 
+          }
+        }
+  });
+},
 getKeyByValue(object, value,key) { 
   debugger;
     for (var prop in object) { 
@@ -143,22 +134,20 @@ getKeyByValue(object, value,key) {
 },
 viewInfo:function(val){
   var obj = tempData.compFresher.getKeyByValue(globalJOBData,val,'id');
-  //console.log(obj);
-
-  var col_info = tempData.compFresher.getKeyByValue(globalJOBData,val,'id');
+  console.log(obj);
 
   var descp = obj.descp.replace(/↵/g,'<br/>');
   var requirement = obj.requirement.replace(/↵/g,'<br/>');
-  //console.log(requirement);
+  console.log(requirement);
 
-  var content='<h2>Job ID : <spam class="spl">'+obj.job_id+'</spam></h2>'+
-              '<h2>Job Title : <spam class="spl">'+obj.title+'</spam></h2>'+
-              '<h2>Description :</h2><p>'+descp+'</p>'+
-              '<h2>Requirement :</h2><p>'+requirement+'</p>'+
-              '<h2>Salary : <spam>'+obj.salary+'</spam></h2>'+
-              '<h2>Number of Position : <spam>'+obj.no_position+'</spam></h2>'+ 
-              '<h2>Location : <spam>'+obj.location+'</spam></h2>';
-              '<h2>Last Date : <spam>'+obj.last_date+'</spam></h2>';
+  var content='<h2>Job ID : '+obj.job_id+'</h2><br>'+
+              '<h2>Job Title : '+obj.title+'</h2><br>'+
+              '<h2>Description :</h2><p>'+descp+'</p><br>'+
+              '<h2>Requirement :</h2><p>'+requirement+'</p><br>'+
+              '<h2>Salary : '+obj.salary+'</h2><br>'+
+              '<h2>Number of Position : '+obj.no_position+'</h2><br>'+ 
+              '<h2>Location : '+obj.location+'</h2><br>';
+              '<h2>Last Date : '+obj.last_date+'</h2><br>';
               
 
 
@@ -197,25 +186,18 @@ confirmDelete:function(val){
    $("#deleteModel").modal({backdrop:'static'});
 },
 editJob:function (id){
-  debugger;
     for(var i=0;i<globalJOBData.length;i++){
         if(id==globalJOBData[i].id){
           $('#record_id').val(globalJOBData[i].id);
           $('#job_title').val(globalJOBData[i].title);
           $('#no_position').val(globalJOBData[i].no_position);
-         // $('#requirement').val(globalJOBData[i].requirement);
-          $('#editor1 iframe').contents().find('.wysihtml5-editor').html(globalJOBData[i].requirement);
-          //$('#descp').val(globalJOBData[i].descp);
-          $('#editor2 iframe').contents().find('.wysihtml5-editor').html(globalJOBData[i].descp);
+          $('#requirement').val(globalJOBData[i].requirement);
+          $('#descp').val(globalJOBData[i].descp);
           $('#location').val(globalJOBData[i].location);
           $('#contact_email').val(globalJOBData[i].contact_email);
-          $('#contact_name').val(globalJOBData[i].contact_name);
-          $('#contact_number').val(globalJOBData[i].contact_number);
           $('#salary').val(globalJOBData[i].salary);
           $('#last_date').val(globalJOBData[i].last_date);
-          //$('#job_id').val(globalJOBData[i].comp_job_id);
-          $('#colleges').val(globalJOBData[i].clg_id).trigger('change');;
-        
+         // $('#job_id').val(globalJOBData[i].comp_job_id);
           break;
         }
     }
@@ -223,33 +205,9 @@ editJob:function (id){
     $("#add_job_hide").hide();
     $("#update_job_hide").show();            
 },
-publish:function (id){
-  var url="ajax/getJobDetailsFGEI.php";
-  var myData = {publish:'publish', rec_id:id};
-  
-   $.ajax({
-        type:"POST",
-        url:url,
-        async: false,
-        dataType: 'json',
-        data:myData,
-        success: function(obj) {
-          debugger;
-          if(obj.data != null){
-             $("#commondialog").modal({backdrop:'static'});
-             $("#getCode").html(obj.data.info);
-             tempData.compFresher.loadJobDetails();
-          }else{
-            $("#commondialog").modal({backdrop:'static'});
-            $("#getCode").html('<p>Please Try Again !!</p>'); 
-          }
-        }
-  });
-},
 clearForm:function(){
     $('#jobTitleFrom')[0].reset();
     $("#removeStyle").fadeOut("fast");
-    $('#colleges').val(null).trigger('change');;
 },
 validateEmail:function(emailField){
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -272,32 +230,9 @@ formatNumber:function (num) {
 
 };
 
+
 $(document).ready(function(){
-
-  $('#requirement').wysihtml5();
-  $('#descp').wysihtml5();
-
-  $("#contact_number").keyup(function() {
-    $("#contact_number").val(this.value.match(/[0-9]*/));
-  }); 
-
 tempData.compFresher.loadJobDetails();
-
-$.ajax({
-	type:'POST',
-	url:'adminreg/college_data.php',
-	success:function(data){
-
-		$('#colleges').html(data);
-	}
-});
-  
-$(".select_college").select2({
-  placeholder: "Select a Colleges",
-  allowClear: true
-});
-  
-        
 
       var setDateFormat="dd/mm/yyyy";
       $('#last_date').datepicker({
@@ -322,12 +257,8 @@ $(".select_college").select2({
       var requirement=$('#requirement').val();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
-      var contact_name=$('#contact_name').val();
-      var contact_number=$('#contact_number').val();
       var last_date=$('#last_date').val();
-      var college_data=$('#colleges').val();
-      
-     //var job_id=$('#job_id').val();
+    // var job_id=$('#job_id').val();
 
     // if(job_id == ""){
     //   $('#job_id').css('border-color', 'red');
@@ -335,7 +266,6 @@ $(".select_college").select2({
     // }else{
     //   $('#job_id').css('border-color', '');
     // } 
-
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
@@ -412,19 +342,15 @@ $("#job_update").click(function(){
       var requirement=$('#requirement').val();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
-      var contact_name=$('#contact_name').val();
-      var contact_number=$('#contact_number').val();
       var last_date=$('#last_date').val();
-      var college_data=$('#colleges').val();
-    //   var job_id=$('#job_id').val();
+      // var job_id=$('#job_id').val();
 
-    // if(job_id == ""){
-    //   $('#job_id').css('border-color', 'red');
-    //   return false;
-    // }else{
-    //   $('#job_id').css('border-color', '');
-    // } 
-
+      // if(job_id == ""){
+      //   $('#job_id').css('border-color', 'red');
+      //   return false;
+      // }else{
+      //   $('#job_id').css('border-color', '');
+      // } 
     if(job_title == ""){
       $('#job_title').css('border-color', 'red');
       return false;
@@ -519,22 +445,20 @@ $("#job_update").click(function(){
           <input type="hidden"  name="job_type" id="job_type" value='I'>
           <input type="hidden"  name="comp_id" id="comp_id" value="<?php echo $ad_com_id; ?>" >
         
-          <!-- <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12">Job ID
-              <span class="required">*</span>
-            </label>
-            <div class="col-md-3 col-sm-2 col-xs-12">
-              <input type="text" name="job_id" id="job_id" required="required" placeholder="Job ID" class="form-control col-md-7 col-xs-12" autofocus>
-            </div>
-          </div> -->
-
-
+        <!-- <div class="form-group">
+        <label class="control-label col-md-2 col-sm-2 col-xs-12">Job ID
+          <span class="required">*</span>
+        </label>
+        <div class="col-md-3 col-sm-2 col-xs-12">
+          <input type="text" name="job_id" id="job_id" required="required" placeholder="Job ID" class="form-control col-md-7 col-xs-12" autofocus>
+        </div>
+        </div> -->
           <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Job Title
               <span class="required">*</span>
             </label>
             <div class="col-md-3 col-sm-2 col-xs-12">
-              <input type="text" name="job_title" id="job_title" required="required" placeholder="Job Title" class="form-control col-md-7 col-xs-12">
+              <input type="text" name="job_title" id="job_title" required="required" placeholder="Job Title" class="form-control col-md-7 col-xs-12" autofocus>
             </div>
             
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Number of Positions</label>
@@ -544,30 +468,21 @@ $("#job_update").click(function(){
           </div>
             
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-3 col-xs-12">Requirement
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Requirement
               <span class="required">*</span>
             </label>
-            
-              <!-- <textarea name="requirement" id="requirement" required="required" style="height:100px;" class="form-control col-md-7 col-xs-12" placeholder="Requirement"></textarea>  -->
-          
-            <div class="col-md-10 col-sm-10 col-xs-12" id="editor1">
-              <textarea class="form-control col-md-10 col-xs-10" name="requirement" id="requirement" required="required" placeholder="Enter Requirement Here ..." style="width: 810px; height: 200px"></textarea>
+            <div class="col-md-3 col-sm-2 col-xs-12">
+              <textarea name="requirement" id="requirement" required="required" style="height:100px;" class="form-control col-md-7 col-xs-12" placeholder="Requirement"></textarea> 
+              <!-- <input type="text"  > -->
             </div>
-           
-            <label class="control-label col-md-2 col-sm-3 col-xs-12">
-            <br>
-            Description 
+            
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Description 
               <span class="required">*</span>
             </label>
-            <br>
-              <!-- <textarea name="descp" id="descp" required="required" placeholder="Description" class="form-control col-md-12 col-xs-12" style="height:100px;" ></textarea>  -->
-
-            <div class="col-md-10 col-sm-10 col-xs-12" id="editor2">
-              <br>
-              <textarea class="form-control col-md-10 col-xs-10" name="descp" id="descp"  required="required" placeholder="Enter Description Here ..." style="width: 810px; height: 200px"></textarea>
-
-            </div>          
-
+            <div class="col-md-3 col-sm-2 col-xs-12">
+              <textarea name="descp" id="descp" required="required" placeholder="Description, Duration, Full time/Part time, Ideal for freshers/Graduates" class="form-control col-md-7 col-xs-12" style="height:100px;" ></textarea> 
+             <!--  <input type="text" name="descp" id="descp" required="required" placeholder="Description" class="form-control col-md-7 col-xs-12"> -->
+            </div>
           </div>
 
           <div class="form-group">
@@ -588,20 +503,6 @@ $("#job_update").click(function(){
           </div>
 
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Name
-            </label>
-            <div class="col-md-3 col-sm-2 col-xs-12">
-              <input type="text" name="contact_name" id="contact_name"  placeholder="Contact Name" class="form-control col-md-7 col-xs-12">
-            </div>
-            
-            <label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Number 
-            </label>
-            <div class="col-md-3 col-sm-2 col-xs-12">
-              <input type="text" name="contact_number" id="contact_number" placeholder="Contact Number" class="form-control col-md-7 col-xs-12" maxlength="10">
-            </div>
-          </div>
-
-          <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Salary
              </label>
             <div class="col-md-3 col-sm-2 col-xs-12">
@@ -613,21 +514,7 @@ $("#job_update").click(function(){
             </label>
             <div class="col-md-3 col-sm-2 col-xs-12">
               <input type="text" name="last_date" id="last_date" required="required" class="form-control col-md-7 col-xs-12" placeholder="Select Date" readonly="readonly">
-              <p>*Before selecting last date please plan accordingly</p>
             </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="control-label col-md-2 col-sm-3 col-xs-12">
-            Select Colleges 
-            </label>
-              <!-- <label class="col-md-1 col-sm-12 col-xs-12">Select Colleges</label> -->
-              <div class="col-md-10 col-sm-10 col-xs-12">
-                <select multiple="multiple" name="colleges[]" id="colleges" class="form-control select_college" tabindex="-1" data-placement="right" data-toggle="tooltip" style="width:80% !important;">
-                  <!-- Data is fetching form Ajax call (colleges)-->
-                </select>
-                <p>*if your not selecting any college, Job can display to all the default colleges</p>
-              </div> 
           </div>
 
            <br/>
@@ -666,7 +553,7 @@ $("#job_update").click(function(){
                     <div class="clearfix"></div>
                   </div>
           
-                  <div class="x_content"  style="width:100%;">  <!-- overflow-x:scroll; -->
+                  <div class="x_content"  style="width:100%;">
                     
                    <table id="loadJobDetails" class="table table-striped table-bordered">
                       <thead>
@@ -678,8 +565,6 @@ $("#job_update").click(function(){
                           <!-- <th>Requirement</th>
                           <th>Description</th> -->
                           <th>Location</th>
-                          <th>Contact Name</th>
-                          <th>Contact Number</th>
                           <th>Contact Email</th>
                           <th>Salary</th>
                           <th>Last Date</th>                                                  
@@ -732,11 +617,6 @@ $("#job_update").click(function(){
        <div class="modal-header">
       <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
        <h5 class="modal-title" id="myModalLabel">Message</h5>
-
-       <input type="button" class="btn btn-default" data-dismiss="modal" 
-  style="height:25px;padding-left: 12px;padding-right: 12px;padding-top: 0px;padding-bottom: 1px;float: right;
-    margin-top: -22px;" value="X"/>
-
        </div>
          <div class="modal-body"  id="bodyContent">
          </div>
@@ -747,6 +627,7 @@ $("#job_update").click(function(){
     </div>
   </div>
 </div>
+
 
 </body>
 </html>

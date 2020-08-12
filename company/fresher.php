@@ -115,6 +115,8 @@ loadJobDetails:function(){
               //   }
               // },
               { data: "location"},
+              { data: "contact_name"},
+              { data: "contact_number"},
               { data: "contact_email"},
               { data: "salary",className:'text-right',
                 render: function (data, type, row, meta) {
@@ -207,6 +209,8 @@ editJob:function (id){
           $('#editor2 iframe').contents().find('.wysihtml5-editor').html(globalJOBData[i].descp);
           $('#location').val(globalJOBData[i].location);
           $('#contact_email').val(globalJOBData[i].contact_email);
+          $('#contact_name').val(globalJOBData[i].contact_name);
+          $('#contact_number').val(globalJOBData[i].contact_number);
           $('#salary').val(globalJOBData[i].salary);
           $('#last_date').val(globalJOBData[i].last_date);
           //$('#job_id').val(globalJOBData[i].comp_job_id);
@@ -273,6 +277,9 @@ $(document).ready(function(){
   $('#requirement').wysihtml5();
   $('#descp').wysihtml5();
 
+  $("#contact_number").keyup(function() {
+    $("#contact_number").val(this.value.match(/[0-9]*/));
+  }); 
 
 tempData.compFresher.loadJobDetails();
 
@@ -315,6 +322,8 @@ $(".select_college").select2({
       var requirement=$('#requirement').val();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
+      var contact_name=$('#contact_name').val();
+      var contact_number=$('#contact_number').val();
       var last_date=$('#last_date').val();
       var college_data=$('#colleges').val();
       
@@ -403,6 +412,8 @@ $("#job_update").click(function(){
       var requirement=$('#requirement').val();
       var location=$('#location').val();
       var contact_email=$('#contact_email').val();
+      var contact_name=$('#contact_name').val();
+      var contact_number=$('#contact_number').val();
       var last_date=$('#last_date').val();
       var college_data=$('#colleges').val();
     //   var job_id=$('#job_id').val();
@@ -577,6 +588,20 @@ $("#job_update").click(function(){
           </div>
 
           <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Name
+            </label>
+            <div class="col-md-3 col-sm-2 col-xs-12">
+              <input type="text" name="contact_name" id="contact_name"  placeholder="Contact Name" class="form-control col-md-7 col-xs-12">
+            </div>
+            
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Number 
+            </label>
+            <div class="col-md-3 col-sm-2 col-xs-12">
+              <input type="text" name="contact_number" id="contact_number" placeholder="Contact Number" class="form-control col-md-7 col-xs-12" maxlength="10">
+            </div>
+          </div>
+
+          <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Salary
              </label>
             <div class="col-md-3 col-sm-2 col-xs-12">
@@ -653,6 +678,8 @@ $("#job_update").click(function(){
                           <!-- <th>Requirement</th>
                           <th>Description</th> -->
                           <th>Location</th>
+                          <th>Contact Name</th>
+                          <th>Contact Number</th>
                           <th>Contact Email</th>
                           <th>Salary</th>
                           <th>Last Date</th>                                                  

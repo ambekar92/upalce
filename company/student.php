@@ -156,7 +156,7 @@ var colleges='';
 		/*{'data':'3'},
 		{'data':'4'},*/
 		{'data':'5'},
-		// {'data':'6'},
+		{'data':'6'},
 		{'data':'7'},
 		{'data':'8',className: "text-right"},
 		{'data':'9',className: "text-right"},
@@ -346,7 +346,7 @@ var colleges='';
 						<!-- <th>Email ID</th>
 						<th>Mobile</th> -->
 						<th>Gender</th>
-                        <!-- <th>College Name</th> -->
+                        <th>College Name</th>
                         <th style="width:30%;">Branch</th>
                         <th>Passed Year</th>
                         <th>Percentage %</th>

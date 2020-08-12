@@ -19,7 +19,7 @@ if(isset($_POST['getJobDetails'])){
   // $getSql="SELECT id,reg_comp_id,type,job_id,title,descp,requirement,no_position,location,contact_email,
   //   salary,last_date,modified,publish,comp_job_id FROM co_job_posted WHERE reg_comp_id=".$comp_id." and publish=1 order by last_date DESC" ;
 
-  $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,
+  $getSql="SELECT jp.id,jp.reg_comp_id,jp.type,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.contact_email,contact_name,contact_number,
   jp.salary,jp.last_date,jp.modified,jp.publish,count(tj.college_id) as college_count,
   (length(tj.student_id) - length(replace(tj.student_id, ',', '')) + 1) as stu_count
   FROM co_job_posted jp,track_job tj
@@ -38,6 +38,8 @@ if(isset($_POST['getJobDetails'])){
         $requirement=$row['requirement'];
         $no_position=$row['no_position'];
         $location=$row['location'];
+        $contact_name=$row['contact_name'];
+        $contact_number=$row['contact_number'];
         $contact_email=$row['contact_email'];
         $salary=$row['salary'];
         $last_date=date('d/m/Y', strtotime($row['last_date']));
@@ -61,6 +63,8 @@ if(isset($_POST['getJobDetails'])){
             'requirement' =>"$requirement",
             'no_position' => "$no_position",
             'location' => "$location",
+            'contact_name' => "$contact_name",
+            'contact_number' => "$contact_number",
             'contact_email' => "$contact_email",
             'salary' => "$salary",
             'last_date' => "$last_date",
@@ -157,7 +161,7 @@ $getStuRes=mysql_query($getStu) or die('Error:'.mysql_error());
     $student_id=$row['student_id'];
   }
 
-$getSql="SELECT s.id as stu_id,tj.clg_approval,tj.id,tj.job_id as job_id,tj.college_id,tj.student_id,jp.type,
+$getSql="SELECT s.resume_name,s.id as stu_id,tj.clg_approval,tj.id,tj.job_id as job_id,tj.college_id,tj.student_id,jp.type,
 s.firstname,s.email,s.usn,s.gender,e.end_year,
 MAX(if(e.class='10',e.secured,'-')) as 10s_perc,
 MAX(if(e.class='12',e.secured,'-')) as 12s_perc,
@@ -172,7 +176,7 @@ and tj.college_id=".$college_id." GROUP BY s.id";
   while($row=mysql_fetch_array($jobDetails)){
         $id=$row['id'];
         $job_id=$row['job_id'];
-        $student_id=$row['student_id'];
+        $student_id=$row['stu_id'];
         $type=$row['type'];
         $firstname=$row['firstname'];
         $branch=$row['branch'];
@@ -180,6 +184,7 @@ and tj.college_id=".$college_id." GROUP BY s.id";
         $_10s_perc=$row['10s_perc'];
         $_12s_perc=$row['12s_perc'];
         $usn=$row['usn'];
+        $resume_name=$row['resume_name'];
         $sl_no=$sl_no+1;
        
         $getJobDetails[]=array('student_id' =>"$student_id",
@@ -194,6 +199,7 @@ and tj.college_id=".$college_id." GROUP BY s.id";
             '12s_perc' =>"$_12s_perc",           
             'usn' =>"$usn",           
             'sl_no' =>"$sl_no",           
+            'resume_name' =>"$resume_name",           
         );
         
     }

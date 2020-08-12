@@ -125,8 +125,7 @@ if(isset($_POST['getCompJobsList'])){
   $comp_id=$_POST['comp_id'];
 
   
-$getSql="SELECT jp.type,jp.id,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,
-jp.salary,jp.last_date,jp.comp_job_id, tj.clg_approval,(length(student_id) - length(replace(student_id, ',', '')) + 1) as stu_count,clg_to_hr_status
+$getSql="SELECT jp.type,jp.id,jp.job_id,jp.title,jp.descp,jp.requirement,jp.no_position,jp.location,jp.salary,jp.last_date,jp.comp_job_id, tj.clg_approval,(length(student_id) - length(replace(student_id, ',', '')) + 1) as stu_count,clg_to_hr_status,jp.contact_name,jp.contact_number,jp.contact_email 
 FROM co_job_posted jp left join (select * from track_job tj where tj.college_id=".$college_id.") tj on tj.job_id=jp.id WHERE  jp.reg_comp_id=".$comp_id." and jp.type<>'E' and jp.publish=1 and (clg_id like '%".$college_id."%' OR clg_id='[]') order by jp.last_date DESC";
 
     
@@ -147,6 +146,9 @@ FROM co_job_posted jp left join (select * from track_job tj where tj.college_id=
         $clg_approval=$row['clg_approval'];
         $stu_count=$row['stu_count'];
         $clg_to_hr_status=$row['clg_to_hr_status'];
+        $contact_name=$row['contact_name'];
+        $contact_number=$row['contact_number'];
+        $contact_email=$row['contact_email'];
 
         if($stu_count==0){
             $stu_count=0;
@@ -167,7 +169,10 @@ FROM co_job_posted jp left join (select * from track_job tj where tj.college_id=
             'comp_job_id' => $comp_job_id,          
             'clg_approval' => $clg_approval,          
             'stu_count' => (int)$stu_count,        
-            'clg_to_hr_status' => $clg_to_hr_status        
+            'clg_to_hr_status' => $clg_to_hr_status,        
+            'contact_name' => $contact_name,        
+            'contact_number' => $contact_number,        
+            'contact_email' => $contact_email        
         );
         
     }
