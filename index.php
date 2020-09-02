@@ -216,6 +216,24 @@
     border: 2px solid black; 
     border-radius: 8%;
 }
+
+.btn-xl {
+    padding: 29px 45px !important;
+}
+
+.cls250{
+    height: 250px;
+}
+
+.clstext{
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 27px;
+    padding: 86px 120px 10px;
+}
+
+.cardCss{
+    box-shadow: 6px 4px 4px 0px black;
+}
     </style>
     
     <script>
@@ -396,33 +414,22 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
     <section id="about" style="background-image: url(web/img/bg.png);color:white;">
         <div class="container">
             <div class="row">
+            <!-- <div class="col-lg-2  text-center">
+            <center><img src="web/img/full_logo.jpg" style="border-radius:2px;width:220px;" class="img-responsive"></center>
+            </div> -->
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                  <h2 class="section-heading">About Us</h2>
                     <hr class="light">
-                <!--<p style="text-align:justify;"> 
-                    The idea of life of a student in the campus led to the formation of uPLACE. We wanted to create a platform working closely with both student community and their universities in order to achieve smoother and well-structured campus drive. uPLACE also aims at providing distinguishing features for students to showcase their talents as well as create and participate in a social platform which is intra colligated. The universities/colleges would have a powerful yet easy to manage tool to assist them in their placement related activities.
-                </p>    
-                <p style="text-align:justify;"> 
-                    We strive hard to provide guidelines for students with respect to their placements and also if they are keen on pursuing further studies in their relevant fields, we are lining up organization and consultancies who can offer free service or services for very less cost.
-                </p>
-                <p style="text-align:justify;">
-                    To sum up, itâ€™s an attempt to answer the question, How to make placement easy for both the student community and universities and provide a social platform at the university level so that the knowledge can be passed on the successive batches.
-                </p>
-                -->
-                <p style="text-align:justify;"> 
-                The idea of life of a student in campus led to creation of uPLACE. uPLACE aims to provide a platform for students where they can showcase their talent. It helps students distinguish themselves from the rest and to participate in a social platform across colleges.
-                </p>
+<p style="text-align:justify;"> 
+uPLACE aims at providing a platform which connects students, their respective universities/colleges with the companies who are looking to hire them. Universities/colleges will have powerful yet easy to manage tools to assist them in their placement related activities.
+</p>
 <p style="text-align:justify;">             
-Universities/colleges will have powerful yet easy to manage tools to assist them in their placement related activities.
+uPLACE provides best in class options for the students to showcase their talents and achievements and try to stand out from the crowd.
 </p>
 
 <p style="text-align:justify;"> 
-We strive hard to provide guidelines to students for their placements. If you are keen on pursuing further studies in relevant fields, we are lining up organization and consultancies to offer services free of cost or at low cost.
-</p>
-
-<p style="text-align:justify;"> 
-To sum up, it's an attempt to answer the question of how to make placement easy for both students and universities by providing a handy tool and a social platform at university level to pass on the knowledge to successive batches.
-</p>                <!--<a href="#services" class="page-scroll btn btn-success btn-xl sr-button">Get Started!</a>-->
+Companies can quickly check their requirement criteria with respect to all the possible universities/colleges and accordingly get in touch with the respective placement officers and also post fresher jobs and internship options to intended colleges.To sum up, it’s an attempt to answer the question of how to make placement activities easy for both students and universities by providing a handy tool and social platform at university level through which they can easily interact with the targeted companies.
+</p>              
                 </div>
             </div>
         </div>
@@ -611,101 +618,88 @@ To sum up, it's an attempt to answer the question of how to make placement easy 
                 </div>
             </div>
         </div>
-        <br>        <br>
+        <br>        <br><br><br><br><br>
         <div class="container">
             <div class="row">       
                 <div class="col-lg-12 text-center">         
                     <div class="col-md-3 col-xs-12">  
-                                <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
                                 <img src="web/img/exp.png" class="img-responsive img-thumbnail" style="width:60%;">
                                     <p><a href="../student/exp_login.php" class="page-scroll btn btn-danger btn-lg hvr-float-shadow" style="color:white;padding:10px; width: 280px;"> Experienced <br> Candidate Login </a></p>
-                                </div>  
-                        <div class="hidden-xs"> 
-                           <div class="thumbnail">
+                                </div>   -->
+                        <div class=""> 
+                           <!-- <div class="thumbnail">
                                 <div class="caption">
                                    <div class="project-name text-faded" style="color:white;">
                                         <h3 style="margin-top: 35%;">Experienced Candidate</h3>
                                     </div>
-                            <!--        <div class="project-name" style="color:black;">
-                                        <h4>------------------------</h4>
-                                    </div>
-                                    <p><a href="../student/exp_login.php" class="page-scroll btn btn-warning btn-xl">Login</a></p>-->
                                 </div> 
                         
                                 <img src="web/img/exp.png" alt="...">
-                           </div>
+                           </div> -->
                            <p><a href="../student/exp_login.php" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> Experienced Login </a></p>
                         </div>
                      </div>
                                      
                     <div class="col-md-3 col-xs-12">  
                             
-                                <div class="hidden-md hidden-lg">
+                                <!-- <div class="hidden-md hidden-lg">
                                 <img src="web/img/stu.png" class="img-responsive img-thumbnail" style="width:60%;">
                                     <p><a href="../student/stulogin.php" class="page-scroll btn btn-danger btn-lg hvr-float-shadow" style="color:white;padding:10px; width: 280px;"> Student Login </a></p>
-                                </div>  
-                        <div class="hidden-xs"> 
-                           <div class="thumbnail">
+                                </div>   -->
+                        <div class=""> 
+                           <!-- <div class="thumbnail">
                                 <div class="caption">
                                    <div class="project-name text-faded" style="color:white;">
                                         <h3 style="margin-top: 35%;">Student</h3>
                                     </div>
-                            <!--        <div class="project-name" style="color:black;">
-                                        <h4>------------------------</h4>
-                                    </div>
-                                    <p><a href="../student/stulogin.php" class="page-scroll btn btn-warning btn-xl">Login</a></p>-->
+                           
                                 </div> 
                         
                                 <img src="web/img/stu.png" alt="...">
-                           </div>
+                           </div> -->
                            <p><a href="../student/stulogin.php" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> STUDENT Login </a></p>
                         </div>
                      </div>
                      
                       <div class="col-md-3 col-xs-12">     
         
-                            <div class="hidden-md hidden-lg">
+                            <!-- <div class="hidden-md hidden-lg">
                             <img src="web/img/clg.png" class="img-responsive img-thumbnail" style="width:60%;">
                                     <p><a href="../admin" class="page-scroll btn btn-danger btn-lg hvr-float-shadow" style="color:white;padding:10px; width: 280px;"> College/University <br> Login </a></p>
-                            </div> 
-                        <div class="hidden-xs">     
-                           <div class="thumbnail">
+                            </div>  -->
+                        <div class="">     
+                           <!-- <div class="thumbnail">
                                <div class="caption">
                                    <div class="project-name text-faded" style="color:white;">
                                         <h3 style="margin-top: 35%;">College/University</h3>
                                     </div>
-                                    <!--<div class="project-name"  style="color:black;">
-                                        <h4>------------------------</h4>
-                                    </div>
-                                    <p><a href="../admin" class="page-scroll btn btn-warning btn-xl"> Login </a></p>-->
+                                   
                                 </div> 
                                 <img src="web/img/clg.png" alt="...">
-                                </div>
-                            <p><a href="../admin" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> University Login </a></p>
+                            </div> -->
+                            <p><a href="../admin/login.php" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> University Login </a></p>
                            </div>
                      </div>
                      
                       <div class="col-md-3 col-xs-12">     
         
-                            <div class="hidden-md hidden-lg">
+                            <!-- <div class="hidden-md hidden-lg">
                                 
                                 <img src="web/img/company.png" class="img-responsive img-thumbnail" style="width:60%;">
                                 <p> <a href="../company" class="page-scroll btn btn-danger btn-lg hvr-float-shadow" style="color:white;padding:10px; width: 280px;"> Company Login </a></p>
-                            </div> 
-                        <div class="hidden-xs">     
-                           <div class="thumbnail">
+                            </div>  -->
+                        <div class="">     
+                           <!-- <div class="thumbnail">
                                <div class="caption">
                                    <div class="project-name text-faded" style="color:white;">
                                         <h3 style="margin-top: 35%;">Company Login</h3>
                                     </div>
-                                    <!--<div class="project-name"  style="color:black;">
-                                        <h4>------------------------</h4>
-                                    </div>
-                                    <p><a href="../company" class="page-scroll btn btn-warning btn-xl"> Login </a></p>-->
+                                    
                                 </div> 
                                 <img src="web/img/company.png" alt="...">
-                                </div>
-                            <p><a href="../company" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> Company Login </a></p>
+                            </div> -->
+                            <p><a href="../company/login.php" class="page-scroll btn btn-danger btn-xl hvr-float-shadow"> Company Login </a></p>
                            </div>
                      </div>
                 </div>
@@ -732,109 +726,7 @@ To sum up, it's an attempt to answer the question of how to make placement easy 
             </div>
         </div>
     </aside>-->
-   <section id="portfolio" style="min-height: 10% !important;">
-         <div class="container-fluid">
-         <div class="row" style="margin-top:-26px;">
-                <div class="col-lg-12 col-md-12 col-xs-12 text-center">
-                    <h2 class="section-heading">Student Blog</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-            <!-- /blog/index.php/branch=E" -->
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=E';">
-                        <img src="web/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                               <!-- <div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                    Engineering and management
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=M';">
-                        <img src="web/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <!--<div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                    Medical
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=P';">
-                        <img src="web/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                               <!-- <div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                   Pure Science
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=H';">
-                        <img src="web/img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <!--<div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                    Hospitality management
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=A';">
-                        <img src="web/img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <!--<div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                    Arts,Social Media and Fashion
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="web/img/loading.gif" class="portfolio-box" onclick="window.location='/blog/index.php?branch=C';">
-                        <img src="web/img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="" style="border: 1px solid black;border-radius: 2px;">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <!--<div class="project-category text-faded">
-                                    Category
-                                </div>-->
-                                <div class="project-name">
-                                    Commerce
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>  
+   
     
     
     
