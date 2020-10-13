@@ -116,7 +116,7 @@ function sql(data_id){
 		
 	}else{
 		
-		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
+		var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
 		//document.getElementById("url_id").value = url;
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');

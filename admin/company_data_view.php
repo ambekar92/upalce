@@ -382,10 +382,8 @@ function checkEmpty(value){
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
 		
-	//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/2016/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
-	}else{
-	//window.open("http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id, "MsgWindow", params);
-		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
+}else{
+		var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;
 		
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');

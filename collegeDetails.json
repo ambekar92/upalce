@@ -1,0 +1,117 @@
+[
+  {
+    "id": "1",
+    "clg_name": "Acharya Tulsi National College Of Commerce",
+    "logo_path": "web/partners/acharya-tulsi-national-college.jpg"
+  },
+  {
+    "id": "2",
+    "clg_name": "Lal Bahadur Arts, Science & S.B.Solabanna Shetty Commerce",
+    "logo_path": "web/partners/lbsbs.jpg"
+  },
+  {
+    "id": "3",
+    "clg_name": "Sri Venkateshwara College of Engineering",
+    "logo_path": "web/partners/svce.jpg"
+  },
+  {
+    "id": "4",
+    "clg_name": "Rao Bahadur Y Mahabaleswarappa Engineering College",
+    "logo_path": "web/partners/rbyme.jpg"
+  },
+  {
+    "id": "5",
+    "clg_name": "Rajarajeshwari College of Engineering, Bangalore",
+    "logo_path": "web/partners/rrce.jpg"
+  },
+  {
+    "id": "6",
+    "clg_name": "ACS College of Engineering",
+    "logo_path": "web/partners/acs_bangalore.jpg"
+  },
+  {
+    "id": "7",
+    "clg_name": "St. Philomena's College, Mysore",
+    "logo_path": "web/partners/stphilos.jpg"
+  },
+  {
+    "id": "8",
+    "clg_name": "Maharaja Institute of Technology, Mysore",
+    "logo_path": "web/partners/mit.jpg"
+  },
+  {
+    "id": "9",
+    "clg_name": "Mysore College of Engineering and Management",
+    "logo_path": "web/partners/mycem.jpg"
+  },
+  {
+    "id": "10",
+    "clg_name": "TTL college of Business Management, Mysore",
+    "logo_path": "web/partners/ttl.jpg"
+  },
+  {
+    "id": "11",
+    "clg_name": "Amruta Institute of Engineering and Management Sciences",
+    "logo_path": "web/partners/aiems.jpg"
+  },
+  {
+    "id": "12",
+    "clg_name": "JSS Academy Of Technical Education",
+    "logo_path": "web/partners/jssate.jpg"
+  },
+  {
+    "id": "13",
+    "clg_name": "Surana College",
+    "logo_path": "web/partners/surana.jpg"
+  },
+  {
+    "id": "14",
+    "clg_name": "Jyothy Institute of Technology",
+    "logo_path": "web/partners/jit.jpg"
+  },
+  {
+    "id": "15",
+    "clg_name": "City Engineering College",
+    "logo_path": "web/partners/city_ec.jpg"
+  },
+  {
+    "id": "16",
+    "clg_name": "Atria Institute of Technology",
+    "logo_path": "web/partners/atria.jpg"
+  },
+  {
+    "id": "17",
+    "clg_name": "SJB Institute of Technology",
+    "logo_path": "web/partners/sjbit.jpg"
+  },
+  {
+    "id": "18",
+    "clg_name": "S R S Institution",
+    "logo_path": "web/partners/clg_1.png"
+  },
+  {
+    "id": "19",
+    "clg_name": "A P S College Of Engineering",
+    "logo_path": "web/partners/aps.png"
+  },
+  {
+    "id": "20",
+    "clg_name": "Vidya Vikas Institute Of Engineering & Technology",
+    "logo_path": "web/partners/vviet.jpg"
+  },
+  {
+    "id": "21",
+    "clg_name": "Sahyadri Science College, Shimoga Karnataka",
+    "logo_path": "web/partners/ssc.jpg"
+  },
+  {
+    "id": "22",
+    "clg_name": "Smt. Indira Gandhi Government First Grade Womens College, Sagara. Karnataka",
+    "logo_path": "web/partners/iggfg.jpg"
+  },
+  {
+    "id": "23",
+    "clg_name": "Yuvaraja College,Mysore",
+    "logo_path": "web/partners/ycm.jpg"
+  }
+]

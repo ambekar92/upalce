@@ -25,7 +25,7 @@ $connection=mysql_connect("localhost","uplacein_admin","admin@123") or DIE('conn
 mysql_select_db("uplacein_common_db") or DIE('Database name is not available!');
 }
 	
-$p_num = mysql_query("SELECT * FROM main_db") or die("Error in Selection Query <br> ".$Query."<br>". mysql_error());
+$p_num = mysql_query("SELECT * FROM main_db where db_type='P'") or die("Error in Selection Query <br> ".$Query."<br>". mysql_error());
 while($row=mysql_fetch_array($p_num)) 
 {
 	$server_id=$row['id']; 
@@ -33,6 +33,7 @@ while($row=mysql_fetch_array($p_num))
 	$server_db_name=$row['db_name']; 
 	$server_username=$row['username']; 
 	$server_password=$row['password']; 
+	$server_db_type=$row['db_type']; 
 }
 
 
@@ -45,6 +46,7 @@ if(isset($_POST['update_db']))
  $server_db_name =$_POST['db_name'];
  $server_username =$_POST['username'];
  $server_password =$_POST['password'];
+// $server_db_type =$_POST['db_type'];
  
 	$Query = "UPDATE main_db set host_name='$server_host_name',db_name='$server_db_name',username='$server_username',password='$server_password'
 		WHERE id = '$update_id'";					
@@ -90,6 +92,12 @@ input[type=submit],input[type=reset] {
 						<td>DB NAME</td>
 						<td><input type="text" name="db_name" placeholder="DB NAME" value="<?php echo $server_db_name;?>" required></td>
 					</tr>
+
+					<tr>	
+					<td>DB TYPE</td>
+						<td><input type="text" name="db_type" placeholder="DB Type" value="<?php echo $server_db_type;?>" disabled></td>
+					</tr>
+
 					<tr>
 						<td>USERNAME</td>
 						<td><input type="text" name="username" placeholder="USERNAME" value="<?php echo $server_username;?>" required></td>

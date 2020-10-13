@@ -263,10 +263,8 @@
                            $('#form_data')[0].reset();
             }  
         });  
-
     }
     
-        
 </script>
 
 <script type="text/javascript"> //<![CDATA[ 
@@ -315,9 +313,9 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
                         <a class="page-scroll menu_color" href="#login">Login</a>
                     </li>
                     
-                    <li>
+                    <!-- <li>
                         <a class="page-scroll menu_color" href="#portfolio">Student Blog</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="page-scroll menu_color" href="#partners">our partners</a>
                     </li>
@@ -833,13 +831,13 @@ Companies can quickly check their requirement criteria with respect to all the p
                         <i class="fa fa-building-o fa-4x text-primary01 sr-icons" style="color: white  !important;"></i>
                         <h3>Companies</h3>
                              <marquee direction="up" scrolldelay=200 style="margin-left:20px;" height="300px" onmouseover="this.stop();" onmouseout="this.start();">
-                            <p> <i class="fa fa-fw fa-building-o" style="color: white  !important;"></i> Dhamaka Store
+                            <!-- <p> <i class="fa fa-fw fa-building-o" style="color: white  !important;"></i> Dhamaka Store
                                     <br> <img src="web/partners/pat_1.png" class="comp_patners">
                             </p>
 
                             <p> <i class="fa fa-fw fa-building-o" style="color: white  !important;"></i> Ruptara Trans
                                     <br> <img src="web/partners/pat_2.jpg" class="comp_patners">
-                            </p>
+                            </p> -->
                             </marquee>
                         </div>
                     </div>
@@ -935,7 +933,7 @@ Companies can quickly check their requirement criteria with respect to all the p
                         <br><br>
                             <p style="font-size:12px;">
                             Policies: <a href="t&c.html" style="color:blue;text-decoration:none;">Terms and conditions</a> 
-                            |<a href="privacy_policy.html" style="color:blue;text-decoration:none;"> Privacy policy </a>  <br> Â© 2016-2017 uplace.in
+                            |<a href="privacy_policy.html" style="color:blue;text-decoration:none;"> Privacy policy </a>  <br> @ 2016-2017
                             </p>
                         <!-- <a href="privacy_policy.html" style="color:blue;text-decoration:none;"> Privacy Policy</a> | <a href="t&c.html" style="color:blue;text-decoration:none;">Terms & Conditions</a>.-->
 
@@ -989,7 +987,10 @@ Companies can quickly check their requirement criteria with respect to all the p
     <script src="web/js/creative.min.js"></script>
 
     <script>
+
+    
     $( document ).ready(function() {
+
 
 jssor_1_slider_init();
     <!-- #endregion Jssor Slider End -->

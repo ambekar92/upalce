@@ -10,7 +10,7 @@ $connection=mysql_connect("localhost","uplacein_admin","admin@123") or die('conn
 mysql_select_db("uplacein_common_db") or die('Database name is not available!');
 }
 	
-$p_num = mysql_query("SELECT * FROM main_db") or die("Error in Selection Query <br> ".$Query."<br>". mysql_error());
+$p_num = mysql_query("SELECT * FROM main_db where db_type='P'") or die("Error in Selection Query <br> ".$Query."<br>". mysql_error());
 while($row=mysql_fetch_array($p_num)) 
 {
 	$server_id=$row['id']; 
@@ -18,6 +18,7 @@ while($row=mysql_fetch_array($p_num))
 	$server_db_name=$row['db_name']; 
 	$server_username=$row['username']; 
 	$server_password=$row['password']; 
+	$server_db_type=$row['db_type']; 
 }
 
 //Main Database
