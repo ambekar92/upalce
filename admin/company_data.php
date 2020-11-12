@@ -118,6 +118,7 @@ function sql(data_id){
 		
 		var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
 		//document.getElementById("url_id").value = url;
+		console.log(url);
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
 	}
@@ -139,7 +140,7 @@ function view(id)
 		
 	}else{
 		
-		var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;		
+		var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/stu_view_profile.php?stu_id="+id;		
 		var win = window.open("about:blank","",params);
 		win.document.write('<iframe src='+url+' style="height: 92%;width: 100%;border: none;overflow:hidden;"></iframe>');
 	}
@@ -300,7 +301,7 @@ function view(id)
 				});
 			}else{
 				
-				var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
+				var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
 				$(document).ready(function() {
 					 $("#commondialog1").modal({backdrop:'static'});
 						$("#getCode1").val(url);	
@@ -321,7 +322,7 @@ function view(id)
 				});
 			}else{
 				
-				var url="http://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
+				var url="https://<?php echo $_SERVER['HTTP_HOST'];?>/admin/company_data_view.php?data_id="+data_id+"&clg_id="+<?php echo $ad_clg_id; ?>;
 				$(document).ready(function() {
 					//alert(url); 
 					//$('#url_id').html(url);	
